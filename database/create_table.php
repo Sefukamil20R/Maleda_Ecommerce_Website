@@ -22,6 +22,7 @@ $sql = "CREATE TABLE Users (
     email VARCHAR(100) NOT NULL,
     password VARCHAR(255) NOT NULL,
     address VARCHAR(100) NOT NULL,
+    is_admin BOOLEAN NOT NULL,
     phone VARCHAR(15) NOT NULL
     )";
 
