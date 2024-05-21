@@ -1,6 +1,6 @@
 <?php
 
-require 'database/db_connect.php';
+require '../database/db_connect.php';
 
 // Define variables and initialize with empty values
 $email = $password = $address = $phone = "";
@@ -93,6 +93,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt->close();
         }
     }
+    echo $email_err;
+    echo $password_err;
+    echo $address_err;
+    echo $phone_err;
     
     // Close connection
     $conn->close();
