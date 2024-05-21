@@ -53,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             // Redirect user to appropriate page based on isAdmin
                             if($isAdmin == 1){
                                 // Redirect to admin dashboard
-                                header("location: admin_dashboard.php");
+                                header("location: ../admin/dashboard.php");
                             } else {
                                 // Redirect to user dashboard
                                 header("location: user_dashboard.php");

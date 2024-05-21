@@ -13,10 +13,10 @@
                 <a href="">Products</a>
             </li>
             <li>
-                <a href="">Login</a>
+                <a href="">Profile</a>
             </li>
             <li>
-                <a href="">Signup</a>
+                <a href="">Logout</a>
             </li>
         </ul>
     </nav>
