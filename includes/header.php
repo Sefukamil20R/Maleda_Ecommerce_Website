@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <header>
       <nav class="main-nav">
         <a href="" class="logo">MALEDA</a>
@@ -9,8 +12,15 @@
           <li><a class="main-nav-link" href="Contactus.html">Contact</a></li>
         </ul>
         <div class="double-buttons">
-          <button class="create">Create</button>
-          <button class="login">Login</button>
+        <?php
+            if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+                echo '<p>Welcome, ' . $_SESSION["email"] . '</p>';
+                echo '<a href="logout.php" class="logout">Logout</a>';
+            } else {
+                echo '<button class="create">Create</button>';
+                echo '<button class="login">Login</button>';
+            }
+            ?>
           <i class="nav-dropdown-btn bi bi-list"></i>
         </div>
       </nav>

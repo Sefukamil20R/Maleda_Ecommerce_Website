@@ -14,7 +14,7 @@
   </head>
 
   <body>
-    <!-- <?php include 'includes/header.php'; ?> -->
+    <?php include 'includes/header.php'; ?>
     <div class="body">
       <div class="container">
         <div class="login-form">
@@ -37,7 +37,7 @@
         </div>
       </div>
     </div>
-    <!-- <?php include 'includes/footer.php'; ?> -->
+    <?php include 'includes/footer.php'; ?>
     <script src="Js/home.js"></script>
     <script src="Js/login.js"></script>
     <script src="Js/dropdown.js"></script>
