@@ -2,10 +2,9 @@
 // Define variables and initialize with empty values
 $email = $password = "";
 $email_err = $password_err = "";
-
+require '../database/db_connect.php';
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-
     // Check if email is empty
     if(empty(trim($_POST["email"]))){
         $email_err = "Please enter email.";
@@ -23,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($email_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT id, email, password, isAdmin FROM Users WHERE email = ?";
+        $sql = "SELECT id, email, password, is_admin FROM Users WHERE email = ?";
         
         if($stmt = $conn->prepare($sql)){
             // Bind variables to the prepared statement as parameters
@@ -71,7 +70,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
-
+            echo $email_err;
+            echo $password_err;
             // Close statement
             $stmt->close();
         }
