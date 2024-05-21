@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+    <link rel="stylesheet" href="../IP1-main/CSS/shop.css" />
+    <link rel="stylesheet" href="CSS/header-footer.css" />
+  </head>
+  <header>
+    <nav class="main-nav">
+        <a href="" class="logo">MALEDA</a>
+        <ul class="middle-nav">
+            <li><a class="main-nav-link" href="index.html">Home</a></li>
+            <li><a class="main-nav-link" href="AboutUs.html">About</a></li>
+            <li><a class="main-nav-link" href="Portfolio.html">portfolio</a></li>
+            <li><a class="main-nav-link" href="shop.html">Products</a></li>
+            <li><a class="main-nav-link" href="Contactus.html">Contact</a></li>
+        </ul>
+        <div class="double-buttons">
+            <button class="create">SignUp</button>
+            <button class="login">Login</button>
+            <i class="nav-dropdown-btn bi bi-list"></i>
+        </div>
+    </nav>
+    <ul class="dropdown-menu">
+      <li><a class="main-nav-link" href="index.html">Home</a></li>
+      <li><a class="main-nav-link" href="AboutUs.html">About</a></li>
+      <li><a class="main-nav-link" href="Portfolio.html">portfolio</a></li>
+      <li><a class="main-nav-link" href="shop.html">Products</a></li>
+      <li><a class="main-nav-link" href="Contactus.html">Contact</a></li>
+        <li>
+            <div class="double-buttons"><button class="create">SignUp</button></div>
+        </li>
+    </ul>
+  </header>
+  <body>
+    <div class="container">
+      <div class="checkoutLayout">
+        <div class="returnCart">
+          <a href="shop.html">back to shop</a>
+          <h1>Total Product in Cart</h1>
+          <div class="list">
+            <div class="item">
+              <img src="../IP1-main/CSS/Image/Bag.jpg" />
+              <div class="info">
+                <div class="name">PRODUCT 1</div>
+                <div class="price">$22/1 product</div>
+              </div>
+              <div class="quantity">5</div>
+              <div class="returnPrice">$433.3</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="right">
+          <h1>Checkout</h1>
+
+          <div class="form">
+            <div class="group">
+              <label for="name">Full Name</label>
+              <input type="text" name="name" id="name" required />
+            </div>
+
+            <div class="group">
+              <label for="phone">Phone Number</label>
+              <input type="text" name="phone" id="phone" required />
+            </div>
+
+            <div class="group">
+              <label for="address">Address</label>
+              <input type="text" name="address" id="address"required />
+            </div>
+
+            <div class="group">
+              <label for="country">Country</label>
+              <select name="country" id="country">
+               
+                <option value="">Ethiopia</option>
+                <option value="">SouthAfrica</option>
+                <option value="">Ghana</option>
+                <option value="">Egypt</option>
+                <option value="">Sudan</option>
+              </select>
+            </div>
+
+            <div class="group">
+              <label for="city">City</label>
+              <select name="city" id="city">
+                <option value="">AddisAbaba</option>
+                <option value="">Carthom</option>
+                <option value="">AddisAbaba</option>
+                <option value="">DC</option>
+                <option value="">medina</option>
+                <option value="">Mombie</option>
+              </select>
+            </div>
+          </div>
+          <div class="return">
+            <div class="row">
+              <div>Total Quantity</div>
+              <div class="totalQuantity">70</div>
+            </div>
+            <div class="row">
+              <div>Total Price</div>
+              <div class="totalPrice">$900</div>
+            </div>
+          </div>
+          <button class="buttonCheckout">CHECKOUT</button>
+        </div>
+      </div>
+    </div>
+    <section class="footer">
+      <div class="logofoot">
+        <div class="footslogo">
+          <h3>About Us</h3>
+          <img src="CSS/Image/Maledaslogo (1).png" alt="" />
+        </div>
+        <div>
+          <p>
+            At Maleda Handcraft, we unite artisans and <br />
+            art enthusiasts worldwide through handmade crafts, <br />
+            telling unique stories, and celebrating craftsmanship <br />
+            in every detail
+          </p>
+        </div>
+      </div>
+      <div class="Quick">
+        <h3>Quick Links</h3>
+        <div class="Linksfoot">
+          <ul>
+            <li><a class="main-nav-link" href="index.html">Home</a></li>
+            <li><a class="main-nav-link" href="AboutUs.html">About</a></li>
+            <li><a class="main-nav-link" href="Portfolio.html">portfolio</a></li>
+            <li><a class="main-nav-link" href="shop.html">Products</a></li>
+            <li><a class="main-nav-link" href="Contactus.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="Adress">
+        <h3>Reach us</h3>
+        <p>phone: +2519998745</p>
+        <p>Email : Maleda@gmail.com</p>
+        <p>P.BOX : 2341</p>
+        <p>Messenger : 243#54</p>
+      </div>
+      <div class="Newsletter">
+        <h3>Join Our Newsletter</h3>
+        <p>Get the latest updates on new products and upcoming sales.</p>
+        <label for="email">Your email address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" />
+        <hr />
+      </div>
+    </section>
+    <footer class="copyright">
+      <p>&copy; 2024 Maleda Handcraft. All rights reserved.</p>
+    </footer>
+  </div>
+ 
+    <!-- <script src="Productcart.js"></script> -->
+    <script src="checkout.js"></script>
+    <script src="Js/home.js"></script>
+    <script src="Js/dropdown.js"></script>
+  
+  </body>
+</html>

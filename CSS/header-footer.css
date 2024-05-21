@@ -182,7 +182,7 @@ header {
   margin-top: 50px;
   color: #983c14;
   font-size: 25px;
-  background-image: url(../CSS/Image/CTA.png);
+  background-image: url(../Image/CTA.png);
   padding: 20px 0;
   background-position: absolute;
   top: 0;
@@ -210,7 +210,7 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  background-image: url(../CSS/Image/Footer1.jpg);
+  /* background-image: url(../Image/Footer1.jpg); */
   color: #983c14;
 }
 

@@ -2,7 +2,7 @@
       <div class="logofoot">
         <div class="footslogo">
           <h3>About Us</h3>
-          <img src="CSS/Image/Maledaslogo (1).png" alt="" />
+          <img src="../Image/Maledaslogo (1).png" alt="" />
         </div>
         <div>
           <p>
