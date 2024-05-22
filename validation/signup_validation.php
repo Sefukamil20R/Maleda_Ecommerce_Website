@@ -1,5 +1,6 @@
 <?php
 
+global $conn;
 require '../database/db_connect.php';
 
 // Define variables and initialize with empty values

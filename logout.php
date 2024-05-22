@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Unset all of the session variables
+// Unset all the session variables
 $_SESSION = array();
 
 // Destroy the session.

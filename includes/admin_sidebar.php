@@ -13,7 +13,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="product.php">
                 <i class='bx bxs-box'></i>
                 <span class="text">Products</span>
             </a>

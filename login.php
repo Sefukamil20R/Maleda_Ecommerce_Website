@@ -35,7 +35,7 @@
           </form>
         </div>
         <div class="pic">
-          <img src="images/ph.png" />
+          <img src="images/ph.png"  alt=""/>
         </div>
       </div>
     </div>

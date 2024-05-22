@@ -1,5 +1,6 @@
 <?php
 // Define variables and initialize with empty values
+global $conn;
 $email = $password = "";
 $email_err = $password_err = "";
 require '../database/db_connect.php';
