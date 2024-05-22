@@ -26,3 +26,13 @@
     font-size: 16px;
     text-align: left;
 }
+
+.product-item button{
+    background: var(--dark);
+    color: var(--light);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}

@@ -18,11 +18,7 @@ include 'session_check.php';
 	<title>Maleda</title>
 </head>
 <body>
-
-    <?php echo "hello ". $_SESSION["isAdmin"]; ?>
-    <?php include '../includes/header.php' ;
-   
-    ?>
+ <?php include '../includes/header.php' ;?>
 
     
 	<section id="content">
@@ -108,7 +104,7 @@ include 'session_check.php';
 							</tr>
 							<tr>
 								<td>
-									<img src="img/people.png">
+									<img src="../img/people.png" alt="">
 									<p>John Doe</p>
 								</td>
 								<td>01-10-2021</td>
@@ -116,7 +112,7 @@ include 'session_check.php';
 							</tr>
 							<tr>
 								<td>
-									<img src="img/people.png">
+									<img src="../img/people.png">
 									<p>John Doe</p>
 								</td>
 								<td>01-10-2021</td>
@@ -124,7 +120,7 @@ include 'session_check.php';
 							</tr>
 							<tr>
 								<td>
-									<img src="img/people.png">
+									<img src="../img/people.png">
 									<p>John Doe</p>
 								</td>
 								<td>01-10-2021</td>

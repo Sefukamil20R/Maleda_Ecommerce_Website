@@ -1,4 +1,5 @@
 <?php
+global $conn;
 require 'db_connect.php';
 
 // Create database

@@ -4,7 +4,7 @@
     <nav>
         <ul>
             <li>
-                <a href="" class="active">Home</a>
+                <a href="" class="">Home</a>
             </li>
             <li>
                 <a href="">Portfolio</a>
