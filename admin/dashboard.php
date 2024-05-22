@@ -29,6 +29,7 @@ include 'session_check.php';
         <?php include '../includes/admin_sidebar.php'; ?>
 
 		<main>
+
 			<div class="head-title">
 				<div class="left">
 					<h1>Dashboard</h1>

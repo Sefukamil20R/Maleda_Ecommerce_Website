@@ -1,4 +1,5 @@
 <?php
+global $conn;
 include 'session_check.php';
 ?>
 
@@ -15,6 +16,8 @@ include 'session_check.php';
     <link rel="stylesheet" href="../CSS/header-style.css">
     <link rel="stylesheet" href="../CSS/footer-style.css">
     <link rel="stylesheet" href="../CSS/login.css">
+    <link rel="stylesheet" href="../CSS/search-bar.css">
+    <link rel="stylesheet" href="../CSS/product-listing.css">
 
 	<title>Maleda</title>
 </head>
@@ -25,53 +28,64 @@ include 'session_check.php';
 	<section id="content">
         <?php include '../includes/admin_sidebar.php'; ?>
 
-		<main>
-            <div class="form-container">
-                <div class="login-form">
-                    <form action="../validation/product_validation.php" method="post" enctype="multipart/form-data">
-                        <h1>Add Product</h1>
-                        <hr />
-                        <p>Artisan Elegance, Shipped to You.</p>
-                        <label for="title">Title</label>
-                        <input
-                        id="title"
-                        name="title"
-                        type="text"
-                        placeholder="Enter product title"
-                        />
-
-                        <label for="price">Price</label>
-                        <input
-                        id="price"
-                        name="price"
-                        type="number"
-                        step="0.01"
-                        placeholder="Enter product price"
-                        />
-
-                        <label for="quantity">Quantity</label>
-                        <input
-                        id="quantity"
-                        name="quantity"
-                        type="number"
-                        placeholder="Enter product quantity"
-                        />
-
-                        <label for="image">Image</label>
-                        <input
-                        id="image"
-                        name="image"
-                        type="file"
-                        />
-                        <input type="submit" value="Add Product">
-                    
-                    </form>
-                </div>
-                <div class="pic">
-                <img src="images/ph.png" />
-                </div>
+        <main>
+            <div class="search-bar">
+                <form>
+                    <input id="search" type="search" placeholder="Search..." autofocus required />
+                    <button class="search-button" type="submit">Go</button>
+                </form>
+                <a href="add_product.php">
+                    <button class="add-product-btn">
+                        Add New Product
+                    </button>
+                </a>
             </div>
-			
+
+            <div class="product-listing">
+                <?php
+                // Connect to your database
+                require '../database/db_connect.php';
+
+                // Write a SQL query to fetch all products
+                $sql = "SELECT * FROM Products";
+
+                // Execute the query and store the result
+                $result = $conn->query($sql);
+
+                // Check if the query returned any products
+                if ($result->num_rows > 0) {
+                    // Loop through the result and generate the HTML for each product
+                    while($product = $result->fetch_assoc()) {
+                        ?>
+                        <div class="product-item">
+                            <img src="<?php echo '/images/products/' . basename($product['image']) ?>" alt="Product Image">
+                            <h2><?php echo $product['title']; ?></h2>
+                            <p>Price: $<?php echo $product['price']; ?></p>
+                            <p>Quantity: <?php echo $product['quantity']; ?></p>
+                            <a href="edit_product.php?id=<?php echo $product['id']; ?>">
+                                <button class="edit-btn">
+                                    Edit
+                                </button>
+                            </a>
+                            <a href="../validation/delete_product.php?id=<?php echo $product['id']; ?>">
+                                <button class="delete-btn">
+                                    Delete
+                                </button>
+                            </a>
+                        </div>
+                        <?php
+                    }
+                } else {
+                    echo "No products found";
+                }
+
+                // Close the database connection
+                $conn->close();
+                ?>
+
+            </div>
+
+
 		</main>
 		<!-- MAIN -->
         <?php include '../includes/footer.php' ;?>
