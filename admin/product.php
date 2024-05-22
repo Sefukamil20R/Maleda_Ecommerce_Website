@@ -1,4 +1,5 @@
 <?php
+global $conn;
 include 'session_check.php';
 ?>
 
@@ -16,6 +17,7 @@ include 'session_check.php';
     <link rel="stylesheet" href="../CSS/footer-style.css">
     <link rel="stylesheet" href="../CSS/login.css">
     <link rel="stylesheet" href="../CSS/search-bar.css">
+    <link rel="stylesheet" href="../CSS/product-listing.css">
 
 	<title>Maleda</title>
 </head>
@@ -37,6 +39,50 @@ include 'session_check.php';
                         Add New Product
                     </button>
                 </a>
+            </div>
+
+            <div class="product-listing">
+                <?php
+                // Connect to your database
+                require '../database/db_connect.php';
+
+                // Write a SQL query to fetch all products
+                $sql = "SELECT * FROM Products";
+
+                // Execute the query and store the result
+                $result = $conn->query($sql);
+
+                // Check if the query returned any products
+                if ($result->num_rows > 0) {
+                    // Loop through the result and generate the HTML for each product
+                    while($product = $result->fetch_assoc()) {
+                        ?>
+                        <div class="product-item">
+                            <img src="<?php echo '/images/products/' . basename($product['image']) ?>" alt="Product Image">
+                            <h2><?php echo $product['title']; ?></h2>
+                            <p>Price: $<?php echo $product['price']; ?></p>
+                            <p>Quantity: <?php echo $product['quantity']; ?></p>
+                            <a href="edit_product.php?id=<?php echo $product['id']; ?>">
+                                <button class="edit-btn">
+                                    Edit
+                                </button>
+                            </a>
+                            <a href="../validation/delete_product.php?id=<?php echo $product['id']; ?>">
+                                <button class="delete-btn">
+                                    Delete
+                                </button>
+                            </a>
+                        </div>
+                        <?php
+                    }
+                } else {
+                    echo "No products found";
+                }
+
+                // Close the database connection
+                $conn->close();
+                ?>
+
             </div>
 
 
