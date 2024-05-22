@@ -1,8 +1,29 @@
 <?php
 global $conn;
 include 'session_check.php';
-?>
 
+$product_id = $_GET['id'];
+
+require '../database/db_connect.php';
+
+$sql = "SELECT * FROM Products";
+
+$stmt = $conn->prepare($sql);
+
+$stmt->execute();
+
+// Get the result
+$result = $stmt->get_result();
+
+$products = $result->fetch_all(MYSQLI_ASSOC);
+
+
+// Close the statement
+$stmt->close();
+
+// Close the database connection
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,9 +36,8 @@ include 'session_check.php';
 	<link rel="stylesheet" href="../CSS/content-sidebar.css">
     <link rel="stylesheet" href="../CSS/header-style.css">
     <link rel="stylesheet" href="../CSS/footer-style.css">
-    <link rel="stylesheet" href="../CSS/login.css">
-    <link rel="stylesheet" href="../CSS/search-bar.css">
-    <link rel="stylesheet" href="../CSS/product-listing.css">
+    <link rel="stylesheet" href="../CSS/search-box.css">
+
 
 	<title>Maleda</title>
 </head>
@@ -27,65 +47,84 @@ include 'session_check.php';
     
 	<section id="content">
         <?php include '../includes/admin_sidebar.php'; ?>
-
         <main>
-            <div class="search-bar">
-                <form>
-                    <input id="search" type="search" placeholder="Search..." autofocus required />
-                    <button class="search-button" type="submit">Go</button>
-                </form>
-                <a href="add_product.php">
-                    <button class="add-product-btn">
-                        Add New Product
-                    </button>
-                </a>
-            </div>
+                <div class="head-title">
+                    <div class="left">
+                        <h1>Dashboard</h1>
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="#">Dashboard</a>
+                            </li>
+                            <li><i class='bx bx-chevron-right' ></i></li>
+                            <li>
+                                <a class="active" href="#">Products</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-            <div class="product-listing">
-                <?php
-                // Connect to your database
-                require '../database/db_connect.php';
 
-                // Write a SQL query to fetch all products
-                $sql = "SELECT * FROM Products";
-
-                // Execute the query and store the result
-                $result = $conn->query($sql);
-
-                // Check if the query returned any products
-                if ($result->num_rows > 0) {
-                    // Loop through the result and generate the HTML for each product
-                    while($product = $result->fetch_assoc()) {
-                        ?>
-                        <div class="product-item">
-                            <img src="<?php echo '/images/products/' . basename($product['image']) ?>" alt="Product Image">
-                            <h2><?php echo $product['title']; ?></h2>
-                            <p>Price: $<?php echo $product['price']; ?></p>
-                            <p>Quantity: <?php echo $product['quantity']; ?></p>
-                            <a href="edit_product.php?id=<?php echo $product['id']; ?>">
-                                <button class="edit-btn">
-                                    Edit
-                                </button>
-                            </a>
-                            <a href="../validation/delete_product.php?id=<?php echo $product['id']; ?>">
-                                <button class="delete-btn">
-                                    Delete
-                                </button>
-                            </a>
+                <ul class="box-info">
+                    <li>
+                        <i class='bx bxs-calendar-check' ></i>
+                        <span class="text">
+						<h3>100</h3>
+						<p style="margin-left: 0;">Products</p>
+					</span>
+                    </li>
+                    <li>
+                        <i class='bx bxs-group' ></i>
+                        <span class="text">
+						<h3>50 Artisans</h3>
+						<p style="margin-left: 0;">Visitors</p>
+					</span>
+                    </li>
+                    <li>
+                        <i class='bx bxs-dollar-circle' ></i>
+                        <span class="text">
+						<h3>$2543</h3>
+						<p style="margin-left: 0;">Total Sales</p>
+					</span>
+                    </li>
+                </ul>
+                <div class="table-data">
+                    <div class="order">
+                        <div class="head">
+                            <h3>Customer Data</h3>
+                            <form class="search-box" action="customer.php" method="get">
+                                <input type="text" name="query" placeholder="Search...">
+                                <button type="submit"><i class='bx bx-search'></i></button>
+                            </form>
+                            <i class='bx bx-filter' ></i>
                         </div>
-                        <?php
-                    }
-                } else {
-                    echo "No products found";
-                }
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Image</th>
+                                <th>Title</th>
+                                <th>price</th>
+                                <th>Quantity</th>
+                                <th>Edit</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($products as $product): ?>
+                                    <tr>
 
-                // Close the database connection
-                $conn->close();
-                ?>
+                                        <td><?php echo $product['id']; ?></td>
+                                        <td><img src="<?php echo '/images/products/' . basename($product['image']) ?>" alt="Product Image" width="300px" height="300px"></td>
+                                        <td><?php echo $product['title']; ?></td>
+                                        <td><?php echo $product['price']; ?></td>
+                                        <td><?php echo $product['quantity']; ?></td>
+                                        <td><a href="edit_product.php?id=<?php echo $product['id']; ?>"><i class="fas fa-edit"></i></a></td>
+                                    </tr>
+                                <?php endforeach; ?>
 
-            </div>
-
-
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 		</main>
 		<!-- MAIN -->
         <?php include '../includes/footer.php' ;?>

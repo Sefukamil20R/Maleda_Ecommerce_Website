@@ -112,11 +112,15 @@ include 'session_check.php';
                     <input type="number" id="quantity" name="quantity" value="<?php echo $product['quantity']; ?>" required>
 
                     <input type="submit" value="Update">
+
+                    <a class="delete-btn-a" href="../validation/delete_product.php?id=<?php echo $product['id']; ?>">
+                        Delete
+                    </a>
                 </form>
 
             </div>
             <div class="pic">
-                <img src="../images/ph.png"  alt=""/>
+                <img src="<?php echo '/images/products/' . basename($product['image']) ?>" alt="Product Image">
             </div>
         </div>
     </main>

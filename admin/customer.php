@@ -5,12 +5,20 @@ include 'session_check.php';
 // Include your database connection file
 require '../database/db_connect.php';
 
-// Prepare a SELECT SQL query to get users who are not admins
-$sql = "SELECT id, email, address, phone FROM Users WHERE is_admin = 0";
+$query = isset($_GET['query']) ? $_GET['query'] : '';
 
+// Prepare a SELECT SQL query to get users who are not admins
+if ($query) {
+    $sql = "SELECT id, email, address, phone FROM Users WHERE is_admin = 0 AND (email LIKE ? OR address LIKE ? OR phone LIKE ?)";
+} else {
+    $sql = "SELECT id, email, address, phone FROM Users WHERE is_admin = 0";
+}
 // Initialize a statement for the query
 $stmt = $conn->prepare($sql);
-
+if ($query) {
+    $param = "%" . $query . "%";
+    $stmt->bind_param("sss", $param, $param, $param);
+}
 // Execute the statement
 $stmt->execute();
 
@@ -41,6 +49,8 @@ $conn->close();
     <link rel="stylesheet" href="../CSS/content-sidebar.css">
     <link rel="stylesheet" href="../CSS/header-style.css">
     <link rel="stylesheet" href="../CSS/footer-style.css">
+    <link rel="stylesheet" href="../CSS/search-box.css">
+
 
     <title>Maleda</title>
 </head>
@@ -97,7 +107,10 @@ $conn->close();
             <div class="order">
                 <div class="head">
                     <h3>Customer Data</h3>
-                    <i class='bx bx-search' ></i>
+                    <form class="search-box" action="customer.php" method="get">
+                        <input type="text" name="query" placeholder="Search...">
+                        <button type="submit"><i class='bx bx-search'></i></button>
+                    </form>
                     <i class='bx bx-filter' ></i>
                 </div>
                 <table>
@@ -108,6 +121,7 @@ $conn->close();
                             <th>Email</th>
                             <th>Address</th>
                             <th>Phone</th>
+                            <th>Profile</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -122,6 +136,9 @@ $conn->close();
                                 <td><?php echo $user['email']; ?></td>
                                 <td><?php echo $user['address']; ?></td>
                                 <td><?php echo $user['phone']; ?></td>
+                                <td>
+                                    <a href="customer-profile.php?id=<?php echo $user['id']; ?>">View Profile</a> <!-- New column data -->
+                                </td>
                             </tr>
                         <?php endforeach; ?>
 
