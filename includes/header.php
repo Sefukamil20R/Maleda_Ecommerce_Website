@@ -10,13 +10,13 @@
                 <a href="">Portfolio</a>
             </li>
             <li>
-                <a href="">Products</a>
+                <a href="../displaypage.php">Products</a>
             </li>
             <li>
-                <a href="">Login</a>
+                <a href="../login.php">Login</a>
             </li>
             <li>
-                <a href="">Signup</a>
+                <a href="../signup.php">Signup</a>
             </li>
         </ul>
     </nav>
