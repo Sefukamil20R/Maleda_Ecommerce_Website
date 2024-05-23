@@ -1,4 +1,3 @@
-<!-- display.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
