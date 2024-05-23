@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="CSS/display.css">
 </head>
 <body>
-    <!-- Your HTML and JavaScript code here -->
     <div class="container">
         <section id="header">
             <h1>MALEDA's PRODUCT LIST</h1>
@@ -32,6 +31,8 @@
         </div>
     </div>
 
+
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             fetch('database/display.php')
@@ -42,7 +43,7 @@
                         const productItem = document.createElement('div');
                         productItem.classList.add('item');
                         productItem.innerHTML = `
-                            <img src="http://localhost/Maleda/project/Maleda_Ecommerce_Website/${product.image}" alt="${product.title}">
+                            <img src="${product.image}" alt="${product.title}">
                             <h2>${product.title}</h2>
                             <div class="price">$${product.price}</div>
                             <button onclick="addCart(${product.id})">Add To Cart</button>
@@ -53,22 +54,22 @@
                 .catch(error => console.error('Error fetching products:', error));
         });
 
-        function addCart(productId) {
-            // Send an AJAX request to addToCart.php with productId
-            fetch('database/addToCart.php', {
-                method: 'POST',
-                body: JSON.stringify({productId: productId}),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => {
-                // Handle the response
-                console.log('Item added to cart');
-                // Update the UI or perform any other actions as needed
-            })
-            .catch(error => console.error('Error adding item to cart:', error));
+        function addCart(productId, quantity) {
+            if(!quantity) {
+                quantity = 1;
+            }
+            fetch(`database/add-to-cart.php?productId=${productId}&quantity=${quantity}`)
+                .then(response => {
+                    if (response.redirected) {
+                        // If the fetch request was redirected, redirect the actual page
+                        window.location.href = response.url;
+                    } else {
+                        console.log('Item added to cart');
+                    }
+                })
+                .catch(error => console.error('Error adding item to cart:', error));
         }
+
     </script>
 </body>
 </html>

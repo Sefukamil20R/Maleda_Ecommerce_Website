@@ -8,7 +8,7 @@ ini_set('display_errors', 1);
 require 'db_connect.php';
 
 // Fetch products from database
-$sql = "SELECT id, title, price, quantity, image FROM Products WHERE id BETWEEN 6 AND 26";
+$sql = "SELECT id, title, price, quantity, image FROM Products WHERE id BETWEEN 1 AND 26";
 $result = $conn->query($sql);
 
 // Check if query was successful
@@ -21,7 +21,7 @@ $products = array();
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         // Convert absolute file path to relative URL
-        $row['image'] = str_replace('C:\\xampp\\htdocs\\Maleda\\project\\Maleda_Ecommerce_Website', '', $row['image']);
+        $row['image'] = '/images/products/' . basename($row['image']);
         $row['image'] = str_replace('\\', '/', $row['image']); // Replace backslashes with forward slashes
         $products[] = $row;
     }
