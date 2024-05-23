@@ -1,6 +1,7 @@
 <?php
 // Include your database connection file
 global $conn;
+require 'session_check.php';
 require '../database/db_connect.php';
 
 // Get the product id from the URL

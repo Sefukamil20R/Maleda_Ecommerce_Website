@@ -2,13 +2,22 @@
 global $conn;
 include 'session_check.php';
 
-$product_id = $_GET['id'];
+$search_term = isset($_GET['query']) ? $_GET['query'] : '';
+$min_price = isset($_GET['min_price']) && is_numeric($_GET['min_price']) ? $_GET['min_price'] : 0;
+$max_price = isset($_GET['max_price']) && is_numeric($_GET['max_price']) ? $_GET['max_price'] : PHP_INT_MAX;
+$min_quantity = isset($_GET['min_quantity']) && is_numeric($_GET['min_quantity']) ? $_GET['min_quantity'] : 0;
+$max_quantity = isset($_GET['max_quantity']) && is_numeric($_GET['max_quantity']) ? $_GET['max_quantity'] : PHP_INT_MAX;
+
+// Get the sort column and direction from the $_GET array. If they're not set, set them to default values.
+$sort_column = isset($_GET['sort_column']) ? $_GET['sort_column'] : 'id';
+$sort_direction = isset($_GET['sort_direction']) && in_array($_GET['sort_direction'], ['asc', 'desc']) ? $_GET['sort_direction'] : 'asc';
 
 require '../database/db_connect.php';
 
-$sql = "SELECT * FROM Products";
-
+$sql = "SELECT * FROM Products WHERE title LIKE ? AND price BETWEEN ? AND ? AND quantity BETWEEN ? AND ? ORDER BY $sort_column $sort_direction";
 $stmt = $conn->prepare($sql);
+$search_term = "%$search_term%";
+$stmt->bind_param("siiii", $search_term, $min_price, $max_price, $min_quantity, $max_quantity);
 
 $stmt->execute();
 
@@ -17,12 +26,25 @@ $result = $stmt->get_result();
 
 $products = $result->fetch_all(MYSQLI_ASSOC);
 
-
 // Close the statement
 $stmt->close();
 
 // Close the database connection
 $conn->close();
+$min_price = isset($_GET['min_price']) && is_numeric($_GET['min_price']) ? $_GET['min_price'] : '';
+$max_price = isset($_GET['max_price']) && is_numeric($_GET['max_price']) ? $_GET['max_price'] : '';
+$min_quantity = isset($_GET['min_quantity']) && is_numeric($_GET['min_quantity']) ? $_GET['min_quantity'] : '';
+$max_quantity = isset($_GET['max_quantity']) && is_numeric($_GET['max_quantity']) ? $_GET['max_quantity'] : '';
+
+$query_params = array(
+    'query' => $search_term,
+    'min_price' => $min_price,
+    'max_price' => $max_price,
+    'min_quantity' => $min_quantity,
+    'max_quantity' => $max_quantity
+);
+
+$query_string = http_build_query($query_params);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,6 +83,9 @@ $conn->close();
                             </li>
                         </ul>
                     </div>
+                    <div class="right">
+                        <a href="add_product.php">Add new Product</a>
+                    </div>
                 </div>
 
 
@@ -90,21 +115,68 @@ $conn->close();
                 <div class="table-data">
                     <div class="order">
                         <div class="head">
-                            <h3>Customer Data</h3>
-                            <form class="search-box" action="customer.php" method="get">
+                            <h3>Product Data</h3>
+                            <form class="search-box" action="product.php" method="get">
                                 <input type="text" name="query" placeholder="Search...">
                                 <button type="submit"><i class='bx bx-search'></i></button>
                             </form>
-                            <i class='bx bx-filter' ></i>
+                        </div>
+
+                        <div id="filterOptions">
+                            <form action="product.php" method="get">
+
+                                <div>
+                                    <div>
+                                        <label for="min_price">Min Price:</label>
+                                        <input type="number" id="min_price" name="min_price" min="0">
+                                    </div>
+                                    <div>
+                                        <label for="max_price">Max Price:</label>
+                                        <input type="number" id="max_price" name="max_price" min="0">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div>
+                                        <label for="min_quantity">Min Quantity:</label>
+                                        <input type="number" id="min_quantity" name="min_quantity" min="0">
+                                    </div>
+                                    <div>
+                                        <label for="max_quantity">Max Quantity:</label>
+                                        <input type="number" id="max_quantity" name="max_quantity" min="0">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="submit">Apply Filters</button>
+                                    <a href="product.php">Remove filter</a>
+                                </div>
+                            </form>
+
                         </div>
                         <table>
                             <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>ID
+                                    <a href="?<?php echo $query_string; ?>&sort_column=id&sort_direction=asc"><i class='bx bx-sort-up'></i></a>
+                                    <a href="?<?php echo $query_string; ?>&sort_column=id&sort_direction=desc"><i class='bx bx-sort-down'></i></a>
+
+                                </th>
+
                                 <th>Image</th>
-                                <th>Title</th>
-                                <th>price</th>
-                                <th>Quantity</th>
+                                <th>Title
+                                    <a href="?<?php echo $query_string; ?>&sort_column=title&sort_direction=asc"><i class='bx bx-sort-up'></i></a>
+                                    <a href="?<?php echo $query_string; ?>&sort_column=title&sort_direction=desc"><i class='bx bx-sort-down'></i></a>
+                                </th>
+                                <th>price
+                                    <a href="?<?php echo $query_string; ?>&sort_column=price&sort_direction=asc"><i class='bx bx-sort-up'></i></a>
+                                    <a href="?<?php echo $query_string; ?>&sort_column=price&sort_direction=desc"><i class='bx bx-sort-down'></i></a>
+                                </th>
+                                <th>Quantity
+                                    <a href="?<?php echo $query_string; ?>&sort_column=quantity&sort_direction=asc"><i class='bx bx-sort-up'></i></a>
+                                    <a href="?<?php echo $query_string; ?>&sort_column=quantity&sort_direction=desc"><i class='bx bx-sort-down'></i></a>
+                                </th>
+
                                 <th>Edit</th>
                             </tr>
                             </thead>

@@ -53,9 +53,9 @@
               placeholder="Enter your phone number"
             />
             <button class="submit">Submit</button>
-            <p class="forgot-pass">
-              <a href="#">Forgot Password?</a>
-            </p>
+              <p class="forgot-pass">
+                  <a href="login.php">Already have an account?</a>
+              </p>
           </form>
         </div>
         <div class="pic">

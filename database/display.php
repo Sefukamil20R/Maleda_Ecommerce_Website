@@ -1,5 +1,6 @@
 <?php
 // Enable error reporting for debugging
+global $conn;
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -7,7 +8,7 @@ ini_set('display_errors', 1);
 require 'db_connect.php';
 
 // Fetch products from database
-$sql = "SELECT id, title, price, quantity, image FROM products WHERE id BETWEEN 6 AND 26";
+$sql = "SELECT id, title, price, quantity, image FROM Products WHERE id BETWEEN 6 AND 26";
 $result = $conn->query($sql);
 
 // Check if query was successful

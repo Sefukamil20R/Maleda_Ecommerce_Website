@@ -24,13 +24,13 @@
               <h1>Login</h1>
               <hr />
               <p>Artisan Elegance, Shipped to You.</p>
-              <label>Email</label>
+              <label for="email">Email</label>
               <input type="email" placeholder="abc@exampl.com" name="email" id="email"/>
-              <label>Password</label>
+              <label for="password">Password</label>
               <input type="password" placeholder="enter your password!"  name="password" id="password"/>
               <button class="submit">Submit</button>
               <p class="forgot-pass">
-                <a href="#">Forgot Password?</a>
+                <a href="signup.php">Don't have an account?</a>
               </p>
           </form>
         </div>

@@ -12,3 +12,56 @@
     border-radius: 50%;
     border-width: 1px;
 }
+.right a{
+    background: var(--dark);
+    width: 150px;
+    border-radius: 38px;
+    color: white;
+    text-align: center;
+    padding: 1.1rem 2rem;
+
+}
+.right a:hover{
+    scale: 1.5;
+    transition: 0.3s;
+
+}
+
+#filterOptions form{
+    display: flex;
+    justify-content: left;
+    margin: 1rem 0;
+
+}
+
+#filterOptions input{
+    width: 200px;
+    margin: 0.4rem;
+    height: 40px;
+    border-radius: 20px;
+    border-color: gray;
+    border-width: 1px;
+    padding: 1rem;
+}
+
+#filterOptions button,#filterOptions a{
+    background: var(--dark);
+    width: 170px;
+    max-height: 50px;
+    border-radius: 25px;
+    color: white;
+    text-align: center;
+    padding: 0.5rem 2rem;
+    display: block;
+    margin: 0.4rem;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance:textfield;
+}
