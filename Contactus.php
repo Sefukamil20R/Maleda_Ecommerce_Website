@@ -26,45 +26,16 @@
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Roboto:ital,wght@0,100;1,300;1,500&display=swap"
       rel="stylesheet"
     />
+    
+    <link rel="stylesheet" href="CSS/header-style.css" />
+    <link rel="stylesheet" href="CSS/footer-style.css" />
     <link rel="stylesheet" href="CSS/style.css" />
-    <link rel="stylesheet" href="CSS/footer-style.css" />
-    <link rel="stylesheet" href="CSS/footer-style.css" />
-
     
 
     <title>MaledaHandcraft</title>
   </head>
   <body>
-    <!-- <div class="Maledas_Wrapper">
-      <header>
-        <nav class="main-nav">
-          <a href="" class="logo">MALEDA</a>
-          <ul class="middle-nav">
-            <li><a class="main-nav-link" href="index.html">Home</a></li>
-            <li><a class="main-nav-link" href="AboutUs.html">About</a></li>
-            <li><a class="main-nav-link" href="Portfolio.html">portfolio</a></li>
-            <li><a class="main-nav-link" href="shop.html">Products</a></li>
-            <li><a class="main-nav-link" href="Contactus.html">Contact</a></li>
-          </ul>
-          <div class="double-buttons">
-            <button class="create">SignUp</button>
-            <button class="login">Login</button> -->
-            <!-- <i class="nav-dropdown-btn bi bi-list"></i>
-          </div>
-        </nav>
-        <ul class="dropdown-menu">
-          <li><a class="main-nav-link" href="index.html">Home</a></li>
-          <li><a class="main-nav-link" href="AboutUs.html">About</a></li>
-          <li><a class="main-nav-link" href="Portfolio.html">portfolio</a></li>
-          <li><a class="main-nav-link" href="shop.html">Products</a></li>
-          <li><a class="main-nav-link" href="Contactus.html">Contact</a></li>
-          <li>
-            <div class="double-buttons">
-              <button class="create">SignUp</button>
-            </div>
-          </li>
-        </ul>
-      </header> -->
+    
 
        <section class="contact"> 
         <!-- <div class="content">  -->
@@ -123,58 +94,7 @@
               </div>
             </form>
           </div>
-        <!-- </div>
-        <h2>Frequently Asked Questions</h2>
-
-        <details>
-          <summary>
-            <i class="fas fa-question-circle"></i>
-            <p>Question 1: How can I contact customer support?</p>
-          </summary>
-          <p>
-            Answer: You can reach our customer support team by phone at +251
-            908070650 or by email at support@maleda.com. Our team is available
-            to assist you during business hours from Monday to Friday.
-          </p>
-        </details>
-
-        <details>
-          <summary>
-            <i class="fas fa-question-circle"></i>
-            <p>Question 2: How can I track my order?</p>
-          </summary>
-          <p>
-            Answer: Once your order is shipped, we will provide you with a
-            tracking number. You can use this tracking number to track the
-            status of your order on our website.
-          </p>
-        </details>
-
-        <details>
-          <summary>
-            <i class="fas fa-question-circle"></i>
-            <p>Question 3: What is your return policy?</p>
-          </summary>
-          <p>
-            Answer: We accept returns within 30 days of purchase. Please review
-            our return policy on our website for detailed instructions on how to
-            initiate a return.
-          </p>
-        </details> -->
-
-        <!-- <h2>Customer Support and Response Times</h2>
-        <p1>
-          Our customer support team is dedicated to providing outstanding
-          service and assisting you with any inquiries or issues you may have.
-          We understand the importance of timely responses, and we strive to
-          respond to all customer inquiries within 24-48 hours during our
-          business hours.
-        </p1>
-        <p2>
-          If you need immediate assistance or have an urgent matter, we
-          recommend contacting us by phone for a faster response. Our phone
-          lines are open from 9:00 AM to 5:00 PM, Monday to Friday.
-        </p2> -->
+        
       </section>
 
       <div class="cta-container">
@@ -185,59 +105,40 @@
         </p>
         <a href="tel:+123456789" class="cta-button">Contact Us</a>
       </div>
-      <section class="footer">
-        <div class="logofoot">
-          <div class="footslogo">
-            <h3>About Us</h3>
-            <img src="CSS/Image/Maledaslogo (1).png" alt="" />
-          </div>
-          <div>
-            <p>
-              At Maleda Handcraft, we unite artisans and <br />
-              art enthusiasts worldwide through handmade crafts, <br />
-              telling unique stories, and celebrating craftsmanship <br />
-              in every detail
-            </p>
-          </div>
-        </div>
-        <div class="Quick">
-          <h3>Quick Links</h3>
-          <div class="Linksfoot">
-            <ul>
-              <li><a href=""></a>Home</li>
-              <li><a href=""></a>AboutUs</li>
-              <li><a href=""></a>Shop</li>
-              <li><a href=""></a>Portfolio</li>
-              <li><a href=""></a>Contact</li>
-            </ul>
-          </div>
-        </div>
-        <div class="Adress">
-          <h3>Reach us</h3>
-          <p>phone: +2519998745</p>
-          <p>Email : Maleda@gmail.com</p>
-          <p>P.BOX : 2341</p>
-          <p>Messenger : 243#54</p>
-        </div>
-        <div class="Newsletter">
-          <h3>Join Our Newsletter</h3>
-          <p>Get the latest updates on new products and upcoming sales.</p>
-          <label for="email">Your email address</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Enter your email"
-          />
-          <hr />
-        </div>
-      </section>
-      <footer class="copyright">
-        <p>&copy; 2024 Maleda Handcraft. All rights reserved.</p>
-      </footer>
+      
+         
     </div>
-    <!-- <script src="Js/home.js"></script>
-    <script src="Js/dropdown.js"></script> -->
+    <style>
+      
+.cta-container {
+  text-align: center;
+  margin-top: 50px;
+  color: #983c14;
+  font-size: 25px;
+  background-image: url(../CSS/Image/CTA.png);
+  padding: 20px 0;
+  background-position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 15px 30px;
+  background-color: #983c14;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.cta-button:hover {
+  background-color: #d9d9d9;
+  color: #983c14;
+} 
+    </style>
   </body>
 </html>
 <?php  require 'includes/footer.php' ?> 

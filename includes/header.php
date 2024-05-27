@@ -4,10 +4,10 @@
     <nav>
         <ul>
             <li>
-                <a href="" class="">Home</a>
+                <a href="../home.php" class="">Home</a>
             </li>
             <li>
-                <a href="">Portfolio</a>
+                <a href="../Portfolio.php">Portfolio</a>
             </li>
             <li>
                 <a href="../displaypage.php">Products</a>
