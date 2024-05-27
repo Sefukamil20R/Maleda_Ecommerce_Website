@@ -32,70 +32,69 @@
     <link rel="stylesheet" href="CSS/style.css" />
     
 
-    <title>MaledaHandcraft</title>
-  </head>
-  <body>
     
-
-       <section class="contact"> 
-        <!-- <div class="content">  -->
-          <h2>Contact Us</h2>
-          <!-- <p>
-            Thank you for visiting our website. If you have any questions,
-            feedback, or inquiries, please don't hesitate to reach out to us.
-            Our dedicated team is here to assist you and provide the necessary
-            information you need. Feel free to use the contact form below or use
-            the provided contact details to get in touch with us. We value your
-            input and look forward to hearing from you.
-          </p>
-        </div> -->
+<body>
+   
+<section class="contact"> 
+        <h2>Contact Us</h2>
         <div class="container">
-          <div class="contactInfo">
-            <div class="box">
-              <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
-              <div class="text">
-                <h3>Address</h3>
-                <p>123 Addis Ababa, Ethiopia</p>
-              </div>
+            <div class="contactInfo">
+                <div class="box">
+                    <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="text">
+                        <h3>Address</h3>
+                        <p>123 Addis Ababa, Ethiopia</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon"><i class="fas fa-phone"></i></div>
+                    <div class="text">
+                        <h3>Phone</h3>
+                        <p>+251 908070650</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon"><i class="fas fa-envelope"></i></div>
+                    <div class="text">
+                        <h3>Email</h3>
+                        <p>maleda@gmail.com</p>
+                    </div>
+                </div>
             </div>
-            <div class="box">
-              <div class="icon"><i class="fas fa-phone"></i></div>
-              <div class="text">
-                <h3>Phone</h3>
-                <p>+251 908070650</p>
-              </div>
-            </div>
-            <div class="box">
-              <div class="icon"><i class="fas fa-envelope"></i></div>
-              <div class="text">
-                <h3>Email</h3>
-                <p>maleda@gamil.com</p>
-              </div>
-            </div>
-          </div>
 
-          <div class="contactForm">
-            <form method="post">
-              <h2>Send Message</h2>
-              <div class="inputBox">
-                <input type="text" name="" required="required" />
-                <span>Full Name</span>
-              </div>
-              <div class="inputBox">
-                <input type="text" name="" required="required" />
-                <span>Email</span>
-              </div>
-              <div class="inputBox">
-                <textarea required="required"></textarea>
-                <span>Type your Message</span>
-              </div>
-              <div class="inputBox">
-                <input type="submit" name="" required="required" value="Send" />
-              </div>
-            </form>
-          </div>
+            <div class="contactForm">
+                <?php if (isset($_GET['feedback'])): ?>
+                    <div class="feedback">
+                        <p><?php echo htmlspecialchars($_GET['feedback']); ?></p>
+                    </div>
+                <?php endif; ?>
+                <form method="post" action="contactpro.php">
+                    <h2>Send Message</h2>
+                    <div class="inputBox">
+                        <input type="text" name="fullname" required="required" />
+                        <span>Full Name</span>
+                    </div>
+                    <div class="inputBox">
+                        <input type="email" name="email" required="required" />
+                        <span>Email</span>
+                    </div>
+                    <div class="inputBox">
+                        <textarea name="message" required="required"></textarea>
+                        <span>Type your Message</span>
+                    </div>
+                    <div class="inputBox">
+                        <input type="submit" value="Send" />
+                    </div>
+                </form>
+            </div>
+        </div>
+                </section>
+
+
+       
+       
         
-      </section>
+     
 
       <div class="cta-container">
         <h2>Ready to Transform Your Space?</h2>
