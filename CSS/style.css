@@ -146,21 +146,6 @@
   font-size: 18px;
 }
 
-@media (max-width: 991px) {
-  .contact {
-    padding: 50px;
-  }
-
-  .container {
-    flex-direction: column;
-  }
-
-  .container .contactInfo,
-  .contactForm {
-    width: 100%;
-  }
-}
-
 .contact h2:nth-of-type(2) {
   text-align: center;
   margin-top: 30px;
@@ -194,115 +179,19 @@ p2:last-child {
 
 
 
-/* .cta-container {
-  text-align: center;
-  margin-top: 50px;
-  color: #983c14;
-  font-size: 25px;
-  background-image: url(../CSS/Image/CTA.png);
-  padding: 20px 0;
-  background-position: absolute;
-  top: 0;
-  left: 0;
+
+
+@media (max-width: 991px) {
+  .contact {
+    padding: 50px;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .container .contactInfo,
+  .contactForm {
+    width: 100%;
+  }
 }
-
-.cta-button {
-  display: inline-block;
-  padding: 15px 30px;
-  background-color: #983c14;
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.cta-button:hover {
-  background-color: #d9d9d9;
-  color: #983c14;
-}
-
-.footer {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  background-image: url(../CSS/Image/Footer1.jpg);
-  color: #983c14;
-}
-
-.logofoot {
-  display: flex;
-  flex-direction: column;
-  flex-direction: flex-start;
-}
-
-.logofoot p {
-  text-align: justify;
-}
-
-.footslogo img {
-  max-width: 100%;
-  height: 45px;
-  margin-bottom: 10px;
-}
-
-.Quick {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.Linksfoot ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.Linksfoot ul li {
-  margin-bottom: 10px;
-}
-
-.Linksfoot ul li:hover {
-  border-bottom: 2px solid white;
-}
-
-.Adress {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.Adress p {
-  margin-bottom: 5px;
-  text-align: right;
-}
-
-.Newsletter {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.Newsletter h3,
-.Newsletter p,
-.Newsletter label {
-  margin-bottom: 10px;
-}
-
-.Newsletter input {
-  width: 100%;
-  padding: 5px;
-  margin-bottom: 10px;
-}
-
-.copyright {
-  background-color: #f0f0f0;
-  padding: 10px;
-  text-align: center;
-  font-size: 14px;
-  color: #555;
-
-  bottom: 0;
-  width: 100%;
-} */

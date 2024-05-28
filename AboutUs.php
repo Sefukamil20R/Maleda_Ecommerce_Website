@@ -6,42 +6,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AboutUs</title>
+    <link
+      rel="stylesheet"
+      href="path/to/font-awesome/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap"
+      rel="stylesheet"
+    />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Roboto:ital,wght@0,100;1,300;1,500&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="CSS/About.css" />
     <link rel="stylesheet" href="CSS/footer-style.css" />
     <link rel="stylesheet" href="CSS/header-style.css" />
-    <!-- <link rel="stylesheet" href="CSS/header-footer.css" /> -->
   </head>
   <body>
-    <!-- <header>
-      <nav class="main-nav">
-        <a href="" class="logo">MALEDA</a>
-        <ul class="middle-nav">
-          <li><a class="main-nav-link" href="index.html">Home</a></li>
-          <li><a class="main-nav-link" href="AboutUs.html">About</a></li>
-          <li><a class="main-nav-link" href="Portfolio.html">portfolio</a></li>
-          <li><a class="main-nav-link" href="shop.html">Products</a></li>
-          <li><a class="main-nav-link" href="Contactus.html">Contact</a></li>
-        </ul>
-        <div class="double-buttons">
-          <button class="create">SignUp</button>
-          <button class="login">Login</button>
-          <i class="nav-dropdown-btn bi bi-list"></i>
-        </div>
-      </nav>
-      <ul class="dropdown-menu">
-        <li><a class="main-nav-link" href="index.html">Home</a></li>
-        <li><a class="main-nav-link" href="AboutUs.html">About</a></li>
-        <li><a class="main-nav-link" href="Portfolio.html">portfolio</a></li>
-        <li><a class="main-nav-link" href="shop.html">Products</a></li>
-        <li><a class="main-nav-link" href="Contactus.html">Contact</a></li>
-        <li>
-          <div class="double-buttons">
-            <button class="create">SignUp</button>
-          </div>
-        </li>
-      </ul>
-    </header> -->
+    
     <section id="top">
       <div class="firstslide">
         <div class="firstText">
@@ -180,60 +171,7 @@
       <a href="tel:+123456789" class="cta-button">Contact Us</a>
     </div>
 
-    <!-- <section class="footer">
-      <div class="logofoot">
-        <div class="footslogo">
-          <h3>About Us</h3>
-          <img src="CSS/Image/Maledaslogo (1).png" alt="" />
-        </div>
-        <div>
-          <p>
-            At Maleda Handcraft, we unite artisans and <br />
-            art enthusiasts worldwide through handmade crafts, <br />
-            telling unique stories, and celebrating craftsmanship <br />
-            in every detail
-          </p>
-        </div>
-      </div>
-      <div class="Quick">
-        <h3>Quick Links</h3>
-        <div class="Linksfoot">
-          <ul>
-            <li><a class="main-nav-link" href="index.html">Home</a></li>
-            <li><a class="main-nav-link" href="AboutUs.html">About</a></li>
-            <li>
-              <a class="main-nav-link" href="Portfolio.html">portfolio</a>
-            </li>
-            <li><a class="main-nav-link" href="shop.html">Products</a></li>
-            <li><a class="main-nav-link" href="Contactus.html">Contact</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="Adress">
-        <h3>Reach us</h3>
-        <p>phone: +2519998745</p>
-        <p>Email : Maleda@gmail.com</p>
-        <p>P.BOX : 2341</p>
-        <p>Messenger : 243#54</p>
-      </div>
-      <div class="Newsletter">
-        <h3>Join Our Newsletter</h3>
-        <p>Get the latest updates on new products and upcoming sales.</p>
-        <label for="email">Your email address</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Enter your email"
-        />
-        <hr />
-      </div>
-    </section>
-    <footer class="copyright">
-      <p>&copy; 2024 Maleda Handcraft. All rights reserved.</p>
-    </footer> -->
-    <!-- <script src="JS/home.js"></script>
-    <script src="Js/dropdown.js"></script> -->
+    
   </body>
 </html>
 <?php  require 'includes/footer.php' ?> 

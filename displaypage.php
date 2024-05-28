@@ -1,3 +1,4 @@
+<?php  require 'includes/header.php' ?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product List</title>
     <link rel="stylesheet" href="CSS/display.css">
+    <link rel="stylesheet" href="CSS/footer-style.css" />
+    <link rel="stylesheet" href="CSS/header-style.css" />
 </head>
 <body>
     <div class="container">
@@ -71,4 +74,6 @@
 
     </script>
 </body>
+<?php  require 'includes/footer.php' ?> 
+
 </html>
