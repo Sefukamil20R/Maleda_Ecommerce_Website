@@ -3,13 +3,13 @@ global $conn;
 require 'db_connect.php';
 
 // Create database
-$dbname = "myDatabase";
-$sql = "DROP DATABASE IF EXISTS $dbname";
+$dbname = "mdatabase";
+$sql = "DROP DATABASE IF EXISTS `$dbname`";
 if ($conn->query($sql) !== TRUE) {
     die("Error dropping database: " . $conn->error);
 }
 
-$sql = "CREATE DATABASE $dbname";
+$sql = "CREATE DATABASE `$dbname`";
 if ($conn->query($sql) !== TRUE) {
     die("Error creating database: " . $conn->error);
 }
@@ -49,5 +49,32 @@ if ($conn->query($sql) === TRUE) {
     die("Error creating Products table: " . $conn->error);
 }
 
+$sql = "CREATE TABLE Orders (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT(6) UNSIGNED,
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    total_amount DECIMAL(10, 2) NOT NULL,
+    status ENUM('pending', 'processing', 'completed', 'cancelled') NOT NULL DEFAULT 'pending',
+    FOREIGN KEY (user_id) REFERENCES Users(id)
+)";
+if ($conn->query($sql) === TRUE) {
+    echo "Table Orders created successfully";
+} else {
+    die("Error creating Orders table: " . $conn->error);
+}
+
+$sql = "CREATE TABLE OrderItems (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    order_id INT(6) UNSIGNED,
+    product_id INT(6) UNSIGNED,
+    quantity INT(6) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES Orders(id),
+    FOREIGN KEY (product_id) REFERENCES Products(id)
+)";
+if ($conn->query($sql) === TRUE) {
+    echo "Table OrderItems created successfully";
+} else {
+    die("Error creating OrderItems table: " . $conn->error);
+}
 $conn->close();
-?>
