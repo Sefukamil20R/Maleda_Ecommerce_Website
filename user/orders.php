@@ -25,11 +25,11 @@ profile.css">
         <!-- Navigation Menu -->
         <nav class="menu">
             <ul>
-                <li><a href="orders.php">profile</a></li>
+                <li><a href="profile.php">profile</a></li>
                 <li><a href="wishlist.php">Wishlist</a></li>
                 <li><a href="addressbook.php">Address Book</a></li>
                 <li><a href="settings.php">Account Settings</a></li>
-                <li><a href="logout.php">Logout</a></li>
+                <li><a href="../logout.php">Logout</a></li>
             </ul>
         </nav>
         <section id="orders" class="order-history">
