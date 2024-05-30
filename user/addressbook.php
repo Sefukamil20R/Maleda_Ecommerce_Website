@@ -17,22 +17,35 @@ login.css">
 
 <body>
     <?php include '../includes/header.php'; ?>
-    <!-- Address Book -->
-    <section id="address" class="address-book">
-        <!-- Display user's shipping addresses -->
-        <h2 class="section-title">Address Book</h2>
-        <!-- Placeholder content -->
-        <ul class="address-list">
-            <li>
-                <span>Address 1:</span> 123 Main St, City, Country, Postal Code
-                <button class="btn">Edit</button>
-                <button class="btn">Delete</button>
-            </li>
-            <!-- Additional address entries -->
-        </ul>
-        <!-- Add new address button -->
-        <button class="btn add-address">Add New Address</button>
-    </section>
+    <div class="container">
+        <h1>User Dashboard</h1>
+        <nav class="menu">
+            <ul>
+                <li><a href="orders.php">Orders</a></li>
+                <li><a href="wishlist.php">Wishlist</a></li>
+                <li><a href="profile.php">profile</a></li>
+                <li><a href="settings.php">Account Settings</a></li>
+                <li><a href="../logout.php">Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Address Book -->
+        <section id="address" class="address-book">
+            <!-- Display user's shipping addresses -->
+            <h2 class="section-title">Address Book</h2>
+            <!-- Placeholder content -->
+            <ul class="address-list">
+                <li>
+                    <span>Address 1:</span> 123 Main St, City, Country, Postal Code
+                    <!--button class="btn">Edit</!--button>
+                    <button class="btn">Delete</button>
+                </li>
+                <!-- Additional address entries -->
+            </ul>
+            <!-- Add new address button -->
+            <!--button class="btn add-address">Add New Address</!--button-->
+        </section>
+    </div>
     <?php include '../includes/footer.php'; ?>
 </body>
 
