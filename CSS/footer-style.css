@@ -80,7 +80,7 @@ ul{
 }
 
 /*responsive*/
-@media(max-width: 767px){
+/* @media(max-width: 767px){
   .footer-col{
     width: 50%;
     margin-bottom: 30px;
@@ -90,7 +90,7 @@ ul{
   .footer-col{
     width: 100%;
 }
-}
+} */
 
 
 

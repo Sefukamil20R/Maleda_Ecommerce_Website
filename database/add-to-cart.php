@@ -1,42 +1,20 @@
 <?php
-global $conn;
-require 'db_connect.php';
 session_start();
 
-// Check if the user is logged in
-if (!isset($_SESSION['loggedin'])) {
-    // If not, redirect to the login page
-    header('Location: ../login.php');
-
-    exit;
-}
-// Get the product ID and quantity from the query parameters
-$product_id = $_GET['productId'];
-$quantity = $_GET['quantity'];
-
-// Fetch product from database
-$sql = "SELECT id, title, price, quantity, image FROM Products WHERE id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $product_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$product = $result->fetch_assoc();
-
-// Check if the cart cookie exists
-if (!isset($_COOKIE['cart'])) {
-    $cart = array();
-} else {
-    // If the cart cookie exists, decode it back into an array
-    $cart = json_decode($_COOKIE['cart'], true);
+if (!isset($_SESSION['user_id'])) {
+    echo json_encode(['redirect' => 'login.php']);
+    exit();
 }
 
-// Add the product and quantity to the cart
-$cart[$product_id] = array('product' => $product, 'quantity' => $quantity);
+$productId = $_GET['productId'];
 
-// Encode the cart back into a JSON string and save it in a cookie
-setcookie('cart', json_encode($cart), time() + (86400 * 30), "/"); // 86400 = 1 day
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+}
 
-// Send a response back to the client
-header('Content-Type: application/json');
-echo json_encode(array('status' => 'success', 'message' => 'Product added to cart'));
+if (!in_array($productId, $_SESSION['cart'])) {
+    $_SESSION['cart'][] = $productId;
+}
+
+echo json_encode(['cart_count' => count($_SESSION['cart'])]);
 ?>

@@ -1,118 +1,30 @@
+
+
+
 ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
 }
 
-.nav_Wrapper {
-  background-color: #f0f0f0;
-  background-color: rgba(255, 255, 255, 0.5);
-  background: #ede9e5;
-  /* position: fixed;
-  width: 100%; */
-  color: #983c14;
-  cursor: pointer;
-}
-.Links_Wrapper ul li:hover {
-  border-bottom: 2px solid #983c14;
-}
-.Links_Wrapper ul li:active {
-  border-bottom: 2px solid #983c14;
-}
-.internal_Wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.socials a {
-  display: inline-block;
-  margin: 0 5px;
-}
-.socials {
-  margin-right: 100px;
-}
-.socials a {
-  color: #983c14;
-}
-
-.Logo_wrapper {
-  flex: 1;
-  text-align: right;
-}
-
-.Links_Wrapper {
-  flex: 10;
-  text-align: center;
-}
-
-.Links_Wrapper ul {
-  display: flex;
-  justify-content: center;
-}
-.Links_Wrapper ul li {
-  padding: 0 20px;
-}
-
-.cart_Wrapper,
-.login_Wrapper,
-.search_icon {
-  flex: 1;
-  text-align: right;
-  display: inline-block;
-}
-.login_Wrapper {
-  margin-right: 25px;
-}
-.cart_Wrapper a,
-.login_Wrapper a,
-.search_icon a {
-  margin-left: 15px;
-  margin-right: 0;
-  padding: 0;
-  color: #983c14;
-}
-
-.Logo_wrapper img {
-  max-width: 100%;
-  height: auto;
-}
-.portfolio-hero h1 {
-  font-family: "Playfair Display", serif;
-  font-size: 2.5rem;
-}
-.portfolio-hero p {
-  font-family: "Arial", sans-serif;
-  font-size: 1.3rem;
-}
-body {
-  background-color: #d9d9d9;
-}
-
+/* Portfolio Hero Section */
 .portfolio-hero {
   background-image: url(../CSS/Image/heroport.jpg);
   background-size: cover;
   background-position: center;
-
   color: #983c14;
-
   text-align: center;
   padding: 100px 20px;
   transition: transform 0.5s ease;
-  transform: translateY(-100%);
+  transform: translateY(0); /* Assuming the final state should be translateY(0) */
 }
 
-.portfolio-hero {
-  transform: translateY(0);
-}
-
+/* Portfolio Section */
 .portfolio {
   margin: 10px 60px;
-  /* background-image: url(../CSS/Image/Backcolor.jpg); */
-  /* border: 10px double #983c14; */
   position: relative;
   padding: 20px;
   background-color: #d9d9d9;
 }
+
 .portfolio:before {
   content: "";
   position: absolute;
@@ -137,8 +49,6 @@ body {
   width: calc(25% - 20px); /* 25% width with 20px spacing */
   margin: 10px; /* Spacing between items */
   overflow: hidden;
-  /* border: 2px solid #e0e0e0; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  */
   transition: transform 0.3s ease;
 }
 
@@ -148,9 +58,10 @@ body {
 
 .portfolio img {
   width: 100%;
-  /* height: 100%; */
   object-fit: cover;
 }
+
+/* Testimonials Section */
 .testimonials {
   display: flex;
   justify-content: space-around;
@@ -166,11 +77,13 @@ body {
   border-radius: 20%;
   margin: 5px 0;
 }
+
 .testimonial p {
   text-align: center;
 }
-.testimonial p,
-h4 {
+
+/* Uncommented and combined h4 styles */
+.testimonial p, h4 {
   font-family: "Arial", sans-serif;
   color: #983c14;
 }
@@ -182,12 +95,15 @@ h4 {
   object-fit: cover;
   margin-bottom: 10px;
 }
+
 .testi h2 {
   color: #983c14;
   font-family: "Playfair Display", serif;
   font-size: 3rem;
   text-align: center;
 }
+
+/* Call to Action Section */
 .cta-container {
   text-align: center;
   margin-top: 50px;
@@ -195,7 +111,7 @@ h4 {
   font-size: 25px;
   background-image: url(../CSS/Image/CTA.png);
   padding: 20px 0;
-  background-position: absolute;
+  position: absolute; /* Changed to position */
   top: 0;
   left: 0;
 }
@@ -215,95 +131,4 @@ h4 {
 .cta-button:hover {
   background-color: #d9d9d9;
   color: #983c14;
-}
-
-.footer {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  background-image: url(../CSS/Image/Footer1.jpg);
-  color: #983c14;
-}
-
-.logofoot {
-  display: flex;
-  flex-direction: column;
-  flex-direction: flex-start;
-}
-.logofoot p {
-  text-align: justify;
-}
-
-.footslogo img {
-  max-width: 100%;
-  height: 45px;
-  margin-bottom: 10px;
-}
-
-.Quick {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.Linksfoot ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.Linksfoot ul li {
-  margin-bottom: 10px;
-}
-.Linksfoot ul li:hover {
-  border-bottom: 2px solid white;
-}
-.Adress {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.Adress p {
-  margin-bottom: 5px;
-  text-align: right;
-}
-.Newsletter {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.Newsletter h3,
-.Newsletter p,
-.Newsletter label {
-  margin-bottom: 10px;
-}
-
-.Newsletter input {
-  width: 100%;
-  padding: 5px;
-  margin-bottom: 10px;
-}
-.copyright {
-  background-color: #f0f0f0;
-  padding: 10px;
-  text-align: center;
-  font-size: 14px;
-  color: #555;
-
-  bottom: 0;
-  width: 100%;
-}
-@media (max-width: 720px) {
-  .portfolio-hero {
-    width: 100%;
-  }
-  .testimonials {
-    display: block;
-  }
-  .testimonial {
-    width: 100%;
-    padding: 10px 5px;
-  }
 }
