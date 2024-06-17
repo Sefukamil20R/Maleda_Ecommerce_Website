@@ -1,23 +1,30 @@
 <?php
+session_start();
 
-include 'session_check.php';
+// Check if the user is logged in
+if (!isset($_SESSION['id'])) {
+    // If not logged in, redirect to the login page
+    header('Location: ../login.php');
+    exit;
+}
 
-// Assuming you have a database connection file
-global $conn;
+// Include the database connection file
 include '../database/db_connect.php';
-
-// Start the session
 
 // Get the user ID from the session
 $id = $_SESSION['id'];
 
 // Fetch user data from the database
-$query = "SELECT  email,phone,address  FROM Users WHERE id = ?";
+$query = "SELECT email, phone, address, profile_picture FROM users WHERE id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $id);
 $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
+
+// Close the statement and the connection
+$stmt->close();
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -33,20 +40,20 @@ $user = $result->fetch_assoc();
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="../CSS/profile.css">
     <link rel="stylesheet" href="../CSS/header-style.css">
+    <link rel="stylesheet" href="../CSS/user_dashboard.css">
 </head>
 
 <body>
-<?php  include '../includes/loggedin-header.php' ; ?>
+    <?php include '../includes/header.php'; ?>
 
     <div class="container">
         <h1>User Dashboard</h1>
         <!-- Navigation Menu -->
         <nav class="menu">
             <ul>
-                <li><a href="orders.php">Orders</a></li>
+                <li><a href="myorder.php">Orders</a></li>
                 <li><a href="wishlist.php">Wishlist</a></li>
-                <li><a href="addressbook.php">Address Book</a></li>
-                <li><a href="settings.php">Account Settings</a></li>
+                <li><a href="settings.php">Account settings</a></li>
                 <li><a href="../logout.php">Logout</a></li>
             </ul>
         </nav>
@@ -56,19 +63,15 @@ $user = $result->fetch_assoc();
             <!-- Display user's profile information -->
             <h2 class="section-title">Profile Information</h2>
             <div class="profile-info">
-                <img src="../images/profilepic/boyy.jpg" alt="Profile Picture" class="profile-picture">
-
-                <p><strong> Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
+                <img src="<?php echo htmlspecialchars($user['profile_picture']); ?>" alt="Profile Picture" class="profile-picture">
+                <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
                 <p><strong>Phone:</strong> <?php echo htmlspecialchars($user['phone']); ?></p>
                 <p><strong>Address:</strong> <?php echo htmlspecialchars($user['address']); ?></p>
             </div>
         </section>
     </div>
-    <!--button class="btn">Edit Profile</!--button>
-    </section-->
 
     <?php include '../includes/footer.php'; ?>
-    </div>
 </body>
 
 </html>
