@@ -13,7 +13,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
-    <link rel="stylesheet" href="CSS/portfolio.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -168,15 +167,7 @@
           </div>
         </div>
       </section>
-      <div class="cta-container">
-        <h2>Ready to Transform Your Space?</h2>
-        <p>
-          Discover the artistry of handmade crafts at Maleda Handcraft. Let's
-          bring your vision to life!
-        </p>
-        <a href="tel:+123456789" class="cta-button">Contact Us</a>
-      </div>
-      
+    
     </div>
   
   </body>
