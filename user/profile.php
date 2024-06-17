@@ -1,154 +1,77 @@
 <?php
-global $conn;
-include 'session_check.php';
+session_start();
 
-$customer_id = $_SESSION["id"];
-
-require '../database/db_connect.php';
-
-$sql = "SELECT * FROM Users WHERE id = ?";
-
-$stmt = $conn->prepare($sql);
-
-$stmt->bind_param("i", $customer_id);
-
-$stmt->execute();
-
-// Get the result
-$result = $stmt->get_result();
-
-// Fetch the customer's details
-if ($result->num_rows > 0) {
-    $customer = $result->fetch_assoc();
-} else {
-    echo "No customer found with id: " . $customer_id;
+// Check if the user is logged in
+if (!isset($_SESSION['id'])) {
+    // If not logged in, redirect to the login page
+    header('Location: ../login.php');
     exit;
 }
-function makeAdmin($user_id) {
 
-    global $conn;
-    $sql = "UPDATE Users SET is_admin = 1 WHERE id = ?";
+// Include the database connection file
+include '../database/db_connect.php';
 
-    if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("i", $user_id);
+// Get the user ID from the session
+$id = $_SESSION['id'];
 
-        if ($stmt->execute()) {
-            echo "User promoted to admin successfully.";
-        } else {
-            echo "Error: Could not execute the query: " . $stmt->error;
-        }
+// Fetch user data from the database
+$query = "SELECT email, phone, address, profile_picture FROM users WHERE id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
 
-        // Close statement
-        $stmt->close();
-    } else {
-        echo "Error: Could not prepare the query: " . $conn->error;
-    }
-}
-// Close the statement
+// Close the statement and the connection
 $stmt->close();
-
-// Close the database connection
 $conn->close();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-
-    <link rel="stylesheet" href="../CSS/content-sidebar.css">
-    <link rel="stylesheet" href="../CSS/header-style.css">
+    <meta charset="UTF-8" />
+    <title>Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../CSS/footer-style.css">
-
-    <title>Customer Profile</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/profile.css">
+    <link rel="stylesheet" href="../CSS/header-style.css">
+    <link rel="stylesheet" href="../CSS/user_dashboard.css">
 </head>
+
 <body>
-<?php  include '../includes/loggedin-header.php' ; ?>
+    <?php include '../includes/header.php'; ?>
 
-<section id="content">
-    <?php include '../includes/user-sidebar.php'; ?>
+    <div class="container">
+        <h1>User Dashboard</h1>
+        <!-- Navigation Menu -->
+        <nav class="menu">
+            <ul>
+                <li><a href="myorder.php">Orders</a></li>
+                <li><a href="wishlist.php">Wishlist</a></li>
+                <li><a href="settings.php">Account settings</a></li>
+                <li><a href="../logout.php">Logout</a></li>
+            </ul>
+        </nav>
 
-    <main>
-        <div class="head-title">
-            <div class="left">
-                <h1>Dashboard</h1>
-                <ul class="breadcrumb">
-                    <li>
-                        <a href="#">Dashboard</a>
-                    </li>
-                    <li><i class='bx bx-chevron-right' ></i></li>
-                    <li>
-                        <a class="active" href="#">Customer Profile</a>
-                    </li>
-                </ul>
+        <!-- Profile Information -->
+        <section id="profile" class="profile">
+            <!-- Display user's profile information -->
+            <h2 class="section-title">Profile Information</h2>
+            <div class="profile-info">
+                <img src="<?php echo htmlspecialchars($user['profile_picture']); ?>" alt="Profile Picture" class="profile-picture">
+                <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
+                <p><strong>Phone:</strong> <?php echo htmlspecialchars($user['phone']); ?></p>
+                <p><strong>Address:</strong> <?php echo htmlspecialchars($user['address']); ?></p>
             </div>
-        </div>
+        </section>
+    </div>
 
-
-        <ul class="box-info">
-            <li>
-                <i class='bx bxs-id-card' ></i>
-                <span class="text">
-						<h3>ID</h3>
-						<p><?php echo $customer['id']; ?></p>
-					</span>
-            </li>
-            <li>
-                <i class='bx bxs-envelope' ></i>
-                <span class="text">
-						<h3>Email</h3>
-						<p><?php echo $customer['email']; ?></p>
-					</span>
-            </li>
-            <li>
-                <i class='bx bxs-map' ></i>
-                <span class="text">
-						<h3>Address</h3>
-						<p><?php echo $customer['address']; ?></p>
-					</span>
-            </li>
-            <li>
-                <i class='bx bxs-phone-call' ></i>
-                <span class="text">
-						<h3>Phone</h3>
-						<p><?php echo $customer['phone']; ?></p>
-					</span>
-            </li>
-        </ul>
-
-
-        <div class="table-data">
-            <div class="order">
-                <div class="head">
-                    <h3>Recent Orders</h3>
-                    <i class='bx bx-search' ></i>
-                    <i class='bx bx-filter' ></i>
-                </div>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Date Order</th>
-                        <th>Status</th>
-                        <th>Total cost</th>
-                        <th>Details</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </main>
-
-    <?php include '../includes/footer.php' ;?>
-</section>
-
-<script src="../js/script.js"></script>
+    <?php include '../includes/footer.php'; ?>
 </body>
+
 </html>
