@@ -3,7 +3,7 @@ global $conn;
 require 'db_connect.php';
 
 // Create database
-$dbname = "mdatabase";
+$dbname = "myDatabase";
 $sql = "DROP DATABASE IF EXISTS `$dbname`";
 if ($conn->query($sql) !== TRUE) {
     die("Error dropping database: " . $conn->error);

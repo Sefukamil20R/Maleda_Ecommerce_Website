@@ -55,7 +55,7 @@ $conn->close();
     <title>Maleda</title>
 </head>
 <body>
-<?php include '../includes/header.php' ;?>
+<?php  include '../includes/loggedin-header.php' ; ?>
 
 
 <section id="content">
@@ -132,8 +132,7 @@ $conn->close();
 
                                 <td><?php echo $user['id']; ?></td>
                                 <td>
-                                    <img src="../images/ph.png" alt="">
-                                    <p>John Doe</p>
+                                    <img src="../images/profilepic/ph.png" alt="">
                                 </td>
                                 <td><?php echo $user['email']; ?></td>
                                 <td><?php echo $user['address']; ?></td>

@@ -64,7 +64,7 @@ $query_string = http_build_query($query_params);
 	<title>Maleda</title>
 </head>
 <body>
-    <?php include '../includes/header.php' ;?>
+<?php  include '../includes/loggedin-header.php' ; ?>
 
     
 	<section id="content">

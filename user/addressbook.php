@@ -1,3 +1,6 @@
+<?php
+include 'session_check.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +19,7 @@ login.css">
 
 
 <body>
-    <?php include '../includes/header.php'; ?>
+<?php  include '../includes/loggedin-header.php' ; ?>
     <!-- Address Book -->
     <section id="address" class="address-book">
         <!-- Display user's shipping addresses -->

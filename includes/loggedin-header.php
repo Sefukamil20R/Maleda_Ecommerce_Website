@@ -16,7 +16,7 @@
                 <a href="">Profile</a>
             </li>
             <li>
-                <a href="">Logout</a>
+                <a href="../logout.php">Logout</a>
             </li>
         </ul>
     </nav>

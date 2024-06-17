@@ -2,7 +2,7 @@
     <div class="Wrapper">
     <div class="row">
         <div class="footer-col">
-            <h4>Quick_Links</h4>
+            <h4>Quick Links</h4>
             <ul>
                 <li><a href="../AboutUs.php">about us</a></li>
                 <li><a href="../displaypage.php">our services</a></li>

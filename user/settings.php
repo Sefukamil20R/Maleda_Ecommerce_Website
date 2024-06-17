@@ -1,3 +1,6 @@
+<?php
+include 'session_check.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +19,7 @@ profile.css">
 </head>
 
 <body>
-    <?php include '../includes/header.php'; ?>
+<?php  include '../includes/loggedin-header.php' ; ?>
     <div class="container">
         <h1>User Dashboard</h1>
         <!-- Navigation Menu -->

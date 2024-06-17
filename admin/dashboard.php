@@ -18,7 +18,7 @@ include 'session_check.php';
 	<title>Maleda</title>
 </head>
 <body>
- <?php include '../includes/header.php' ;?>
+<?php  include '../includes/loggedin-header.php' ; ?>
 
     
 	<section id="content">
@@ -86,46 +86,46 @@ include 'session_check.php';
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="../img/people.png" alt="">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status process">Process</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="../img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="../img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
-							</tr>
+<!--							<tr>-->
+<!--								<td>-->
+<!--									<img src="img/people.png">-->
+<!--									<p>John Doe</p>-->
+<!--								</td>-->
+<!--								<td>01-10-2021</td>-->
+<!--								<td><span class="status completed">Completed</span></td>-->
+<!--							</tr>-->
+<!--							<tr>-->
+<!--								<td>-->
+<!--									<img src="img/people.png">-->
+<!--									<p>John Doe</p>-->
+<!--								</td>-->
+<!--								<td>01-10-2021</td>-->
+<!--								<td><span class="status pending">Pending</span></td>-->
+<!--							</tr>-->
+<!--							<tr>-->
+<!--								<td>-->
+<!--									<img src="../img/people.png" alt="">-->
+<!--									<p>John Doe</p>-->
+<!--								</td>-->
+<!--								<td>01-10-2021</td>-->
+<!--								<td><span class="status process">Process</span></td>-->
+<!--							</tr>-->
+<!--							<tr>-->
+<!--								<td>-->
+<!--									<img src="../img/people.png">-->
+<!--									<p>John Doe</p>-->
+<!--								</td>-->
+<!--								<td>01-10-2021</td>-->
+<!--								<td><span class="status pending">Pending</span></td>-->
+<!--							</tr>-->
+<!--							<tr>-->
+<!--								<td>-->
+<!--									<img src="../img/people.png">-->
+<!--									<p>John Doe</p>-->
+<!--								</td>-->
+<!--								<td>01-10-2021</td>-->
+<!--								<td><span class="status completed">Completed</span></td>-->
+<!--							</tr>-->
 						</tbody>
 					</table>
 				</div>
@@ -135,28 +135,28 @@ include 'session_check.php';
 						<i class='bx bx-plus' ></i>
 						<i class='bx bx-filter' ></i>
 					</div>
-					<ul class="todo-list">
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="not-completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="not-completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-					</ul>
+<!--					<ul class="todo-list">-->
+<!--						<li class="completed">-->
+<!--							<p>Todo List</p>-->
+<!--							<i class='bx bx-dots-vertical-rounded' ></i>-->
+<!--						</li>-->
+<!--						<li class="completed">-->
+<!--							<p>Todo List</p>-->
+<!--							<i class='bx bx-dots-vertical-rounded' ></i>-->
+<!--						</li>-->
+<!--						<li class="not-completed">-->
+<!--							<p>Todo List</p>-->
+<!--							<i class='bx bx-dots-vertical-rounded' ></i>-->
+<!--						</li>-->
+<!--						<li class="completed">-->
+<!--							<p>Todo List</p>-->
+<!--							<i class='bx bx-dots-vertical-rounded' ></i>-->
+<!--						</li>-->
+<!--						<li class="not-completed">-->
+<!--							<p>Todo List</p>-->
+<!--							<i class='bx bx-dots-vertical-rounded' ></i>-->
+<!--						</li>-->
+<!--					</ul>-->
 				</div>
 			</div>
 		</main>

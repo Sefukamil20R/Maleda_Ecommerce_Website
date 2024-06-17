@@ -93,7 +93,7 @@ include 'session_check.php';
     <title>Maleda</title>
 </head>
 <body>
-<?php include '../includes/header.php' ;?>
+<?php  include '../includes/loggedin-header.php' ; ?>
 
 
 <section id="content">

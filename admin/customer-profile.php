@@ -24,7 +24,26 @@ if ($result->num_rows > 0) {
     echo "No customer found with id: " . $customer_id;
     exit;
 }
+function makeAdmin($user_id) {
+    
+    global $conn;
+    $sql = "UPDATE Users SET is_admin = 1 WHERE id = ?";
 
+    if ($stmt = $conn->prepare($sql)) {
+        $stmt->bind_param("i", $user_id);
+
+        if ($stmt->execute()) {
+            echo "User promoted to admin successfully.";
+        } else {
+            echo "Error: Could not execute the query: " . $stmt->error;
+        }
+
+        // Close statement
+        $stmt->close();
+    } else {
+        echo "Error: Could not prepare the query: " . $conn->error;
+    }
+}
 // Close the statement
 $stmt->close();
 
@@ -48,7 +67,7 @@ $conn->close();
     <title>Customer Profile</title>
 </head>
 <body>
-<?php include '../includes/header.php' ;?>
+<?php  include '../includes/loggedin-header.php' ; ?>
 
 <section id="content">
     <?php include '../includes/admin_sidebar.php'; ?>
@@ -100,6 +119,31 @@ $conn->close();
 					</span>
             </li>
         </ul>
+
+
+        <div class="table-data">
+            <div class="order">
+                <div class="head">
+                    <h3>Recent Orders</h3>
+                    <i class='bx bx-search' ></i>
+                    <i class='bx bx-filter' ></i>
+                </div>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Date Order</th>
+                        <th>Status</th>
+                        <th>Total cost</th>
+                        <th>Details</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </main>
 
     <?php include '../includes/footer.php' ;?>

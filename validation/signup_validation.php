@@ -64,6 +64,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $phone_err = "Please enter your phone number.";     
     } else{
         $phone = trim($_POST["phone"]);
+        $phone_pattern = "/^\+?\d{10,15}$/";
+
+        if(!preg_match($phone_pattern, $phone)){
+            $phone_err = "Please enter a valid phone number.";
+        }
+
     }
 
     // Check input errors before inserting in database

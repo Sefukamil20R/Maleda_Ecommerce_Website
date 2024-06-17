@@ -1,15 +1,18 @@
 <?php
+
+include 'session_check.php';
+
 // Assuming you have a database connection file
+global $conn;
 include '../database/db_connect.php';
 
 // Start the session
-session_start();
 
 // Get the user ID from the session
 $id = $_SESSION['id'];
 
 // Fetch user data from the database
-$query = "SELECT  email,phone,address  FROM users WHERE id = ?";
+$query = "SELECT  email,phone,address  FROM Users WHERE id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $id);
 $stmt->execute();
@@ -33,7 +36,7 @@ $user = $result->fetch_assoc();
 </head>
 
 <body>
-    <?php include '../includes/header.php'; ?>
+<?php  include '../includes/loggedin-header.php' ; ?>
 
     <div class="container">
         <h1>User Dashboard</h1>
@@ -44,7 +47,7 @@ $user = $result->fetch_assoc();
                 <li><a href="wishlist.php">Wishlist</a></li>
                 <li><a href="addressbook.php">Address Book</a></li>
                 <li><a href="settings.php">Account Settings</a></li>
-                <li><a href="logout.php">Logout</a></li>
+                <li><a href="../logout.php">Logout</a></li>
             </ul>
         </nav>
 
