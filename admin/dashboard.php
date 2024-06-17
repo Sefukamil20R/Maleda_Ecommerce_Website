@@ -1,5 +1,31 @@
 <?php
+global $conn;
 include 'session_check.php';
+require '../database/db_connect.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+$sql = "SELECT * FROM Orders ORDER BY order_date DESC";
+$result = $conn->query($sql);
+
+$orders = $result->fetch_all(MYSQLI_ASSOC);
+$sql = "SELECT COUNT(*) as total_orders FROM Orders";
+$result = $conn->query($sql);
+
+$order_count = $result->fetch_assoc()['total_orders'];
+$sql = "SELECT COUNT(*) as total_users FROM Users";
+$result = $conn->query($sql);
+$user_count = $result->fetch_assoc()['total_users'];
+
+// SQL query to get the total income
+$sql = "SELECT SUM(total_amount) as total_income FROM Orders";
+$result = $conn->query($sql);
+$total_income = $result->fetch_assoc()['total_income'];
+if ($total_income === null) {
+   $total_income = 0;
+}
+// Close the database connection
+$conn->close();
+
 ?>
 
 <!DOCTYPE html>
@@ -39,9 +65,9 @@ include 'session_check.php';
 						</li>
 					</ul>
 				</div>
-				<a href="#" class="btn-download">
+				<a href="download-report.php" class="btn-download">
 					<i class='bx bxs-cloud-download' ></i>
-					<span class="text">Download PDF</span>
+					<span class="text">Download report</span>
 				</a>
 			</div>
 
@@ -49,21 +75,21 @@ include 'session_check.php';
 				<li>
 					<i class='bx bxs-calendar-check' ></i>
 					<span class="text">
-						<h3>1020</h3>
-						<p>New Order</p>
+						<h3><?php echo $order_count?></h3>
+						<p>Total Orders</p>
 					</span>
 				</li>
 				<li>
 					<i class='bx bxs-group' ></i>
 					<span class="text">
-						<h3>2834</h3>
+						<h3><?php echo $user_count?></h3>
 						<p>Visitors</p>
 					</span>
 				</li>
 				<li>
 					<i class='bx bxs-dollar-circle' ></i>
 					<span class="text">
-						<h3>$2543</h3>
+						<h3><?php echo $total_income?></h3>
 						<p>Total Sales</p>
 					</span>
 				</li>
@@ -86,79 +112,30 @@ include 'session_check.php';
 							</tr>
 						</thead>
 						<tbody>
-<!--							<tr>-->
-<!--								<td>-->
-<!--									<img src="img/people.png">-->
-<!--									<p>John Doe</p>-->
-<!--								</td>-->
-<!--								<td>01-10-2021</td>-->
-<!--								<td><span class="status completed">Completed</span></td>-->
-<!--							</tr>-->
-<!--							<tr>-->
-<!--								<td>-->
-<!--									<img src="img/people.png">-->
-<!--									<p>John Doe</p>-->
-<!--								</td>-->
-<!--								<td>01-10-2021</td>-->
-<!--								<td><span class="status pending">Pending</span></td>-->
-<!--							</tr>-->
-<!--							<tr>-->
-<!--								<td>-->
-<!--									<img src="../img/people.png" alt="">-->
-<!--									<p>John Doe</p>-->
-<!--								</td>-->
-<!--								<td>01-10-2021</td>-->
-<!--								<td><span class="status process">Process</span></td>-->
-<!--							</tr>-->
-<!--							<tr>-->
-<!--								<td>-->
-<!--									<img src="../img/people.png">-->
-<!--									<p>John Doe</p>-->
-<!--								</td>-->
-<!--								<td>01-10-2021</td>-->
-<!--								<td><span class="status pending">Pending</span></td>-->
-<!--							</tr>-->
-<!--							<tr>-->
-<!--								<td>-->
-<!--									<img src="../img/people.png">-->
-<!--									<p>John Doe</p>-->
-<!--								</td>-->
-<!--								<td>01-10-2021</td>-->
-<!--								<td><span class="status completed">Completed</span></td>-->
-<!--							</tr>-->
+                        <?php foreach ($orders as $order): ?>
+                            <tr>
+                                <td><?php echo $order['user_id']; ?></td>
+                                <td><?php echo $order['order_date']; ?></td>
+                                <td><?php echo $order['status']; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+
 						</tbody>
 					</table>
 				</div>
-				<div class="todo">
-					<div class="head">
-						<h3>Todos</h3>
-						<i class='bx bx-plus' ></i>
-						<i class='bx bx-filter' ></i>
-					</div>
-<!--					<ul class="todo-list">-->
-<!--						<li class="completed">-->
-<!--							<p>Todo List</p>-->
-<!--							<i class='bx bx-dots-vertical-rounded' ></i>-->
-<!--						</li>-->
-<!--						<li class="completed">-->
-<!--							<p>Todo List</p>-->
-<!--							<i class='bx bx-dots-vertical-rounded' ></i>-->
-<!--						</li>-->
-<!--						<li class="not-completed">-->
-<!--							<p>Todo List</p>-->
-<!--							<i class='bx bx-dots-vertical-rounded' ></i>-->
-<!--						</li>-->
-<!--						<li class="completed">-->
-<!--							<p>Todo List</p>-->
-<!--							<i class='bx bx-dots-vertical-rounded' ></i>-->
-<!--						</li>-->
-<!--						<li class="not-completed">-->
-<!--							<p>Todo List</p>-->
-<!--							<i class='bx bx-dots-vertical-rounded' ></i>-->
-<!--						</li>-->
-<!--					</ul>-->
-				</div>
-			</div>
+                <div class="order">
+                    <form class="order-form" action="process-form.php" method="post">
+                        <label for="receiver">Receiver:</label><br>
+                        <input type="email" id="receiver" name="receiver"><br>
+                        <label for="subject">Subject:</label><br>
+                        <input type="text" id="subject" name="subject"><br>
+                        <label for="body">Body:</label><br>
+                        <textarea id="body" name="body"></textarea><br>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+
 		</main>
 		<!-- MAIN -->
         <?php include '../includes/footer.php' ;?>

@@ -85,6 +85,7 @@ $query_string = http_build_query($query_params);
                     </div>
                     <div class="right">
                         <a href="add_product.php">Add new Product</a>
+                        <a href="download-products.php">Download Products</a>
                     </div>
                 </div>
 

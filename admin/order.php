@@ -1,54 +1,31 @@
 <?php
 global $conn;
 include 'session_check.php';
-
-$customer_id = $_SESSION["id"];
-
 require '../database/db_connect.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+$sql = "SELECT * FROM Orders ORDER BY order_date DESC";
+$result = $conn->query($sql);
 
-$sql = "SELECT * FROM Users WHERE id = ?";
+$orders = $result->fetch_all(MYSQLI_ASSOC);
+$sql = "SELECT COUNT(*) as total_orders FROM Orders";
+$result = $conn->query($sql);
 
-$stmt = $conn->prepare($sql);
+$order_count = $result->fetch_assoc()['total_orders'];
+$sql = "SELECT COUNT(*) as total_users FROM Users";
+$result = $conn->query($sql);
+$user_count = $result->fetch_assoc()['total_users'];
 
-$stmt->bind_param("i", $customer_id);
-
-$stmt->execute();
-
-// Get the result
-$result = $stmt->get_result();
-
-// Fetch the customer's details
-if ($result->num_rows > 0) {
-    $customer = $result->fetch_assoc();
-} else {
-    echo "No customer found with id: " . $customer_id;
-    exit;
+// SQL query to get the total income
+$sql = "SELECT SUM(total_amount) as total_income FROM Orders";
+$result = $conn->query($sql);
+$total_income = $result->fetch_assoc()['total_income'];
+if ($total_income === null) {
+    $total_income = 0;
 }
-function makeAdmin($user_id) {
-
-    global $conn;
-    $sql = "UPDATE Users SET is_admin = 1 WHERE id = ?";
-
-    if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("i", $user_id);
-
-        if ($stmt->execute()) {
-            echo "User promoted to admin successfully.";
-        } else {
-            echo "Error: Could not execute the query: " . $stmt->error;
-        }
-
-        // Close statement
-        $stmt->close();
-    } else {
-        echo "Error: Could not prepare the query: " . $conn->error;
-    }
-}
-// Close the statement
-$stmt->close();
-
 // Close the database connection
 $conn->close();
+
 ?>
 
 <!DOCTYPE html>
@@ -64,15 +41,17 @@ $conn->close();
     <link rel="stylesheet" href="../CSS/header-style.css">
     <link rel="stylesheet" href="../CSS/footer-style.css">
 
-    <title>Customer Profile</title>
+    <title>Maleda</title>
 </head>
 <body>
 <?php  include '../includes/loggedin-header.php' ; ?>
 
+
 <section id="content">
-    <?php include '../includes/user-sidebar.php'; ?>
+    <?php include '../includes/admin_sidebar.php'; ?>
 
     <main>
+
         <div class="head-title">
             <div class="left">
                 <h1>Dashboard</h1>
@@ -82,40 +61,27 @@ $conn->close();
                     </li>
                     <li><i class='bx bx-chevron-right' ></i></li>
                     <li>
-                        <a class="active" href="#">Customer Profile</a>
+                        <a class="active" href="#">Orders</a>
                     </li>
                 </ul>
             </div>
-        </div>
 
+        </div>
 
         <ul class="box-info">
             <li>
-                <i class='bx bxs-id-card' ></i>
+                <i class='bx bxs-calendar-check' ></i>
                 <span class="text">
-						<h3>ID</h3>
-						<p><?php echo $customer['id']; ?></p>
+						<h3><?php echo $order_count?></h3>
+						<p>Total Orders</p>
 					</span>
             </li>
+
             <li>
-                <i class='bx bxs-envelope' ></i>
+                <i class='bx bxs-dollar-circle' ></i>
                 <span class="text">
-						<h3>Email</h3>
-						<p><?php echo $customer['email']; ?></p>
-					</span>
-            </li>
-            <li>
-                <i class='bx bxs-map' ></i>
-                <span class="text">
-						<h3>Address</h3>
-						<p><?php echo $customer['address']; ?></p>
-					</span>
-            </li>
-            <li>
-                <i class='bx bxs-phone-call' ></i>
-                <span class="text">
-						<h3>Phone</h3>
-						<p><?php echo $customer['phone']; ?></p>
+						<h3><?php echo $total_income?></h3>
+						<p>Total Sales</p>
 					</span>
             </li>
         </ul>
@@ -131,23 +97,37 @@ $conn->close();
                 <table>
                     <thead>
                     <tr>
-                        <th>Order ID</th>
+                        <th>Order Id</th>
+                        <th>User Id</th>
                         <th>Date Order</th>
                         <th>Status</th>
-                        <th>Total cost</th>
-                        <th>Details</th>
+                        <th>Total amount</th>
                     </tr>
                     </thead>
                     <tbody>
+                    <?php foreach ($orders as $order): ?>
+                        <tr>
+                            <td><?php echo $order['id']; ?></td>
+                            <td><?php echo $order['user_id']; ?></td>
+                            <td><?php echo $order['order_date']; ?></td>
+                            <td><?php echo $order['status']; ?></td>
+                            <td><?php echo $order['total_amount']; ?></td>
+
+                        </tr>
+                    <?php endforeach; ?>
 
                     </tbody>
                 </table>
             </div>
-        </div>
-    </main>
 
+        </div>
+
+    </main>
+    <!-- MAIN -->
     <?php include '../includes/footer.php' ;?>
 </section>
+<!-- CONTENT -->
+
 
 <script src="../js/script.js"></script>
 </body>

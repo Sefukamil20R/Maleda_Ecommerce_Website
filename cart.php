@@ -1,5 +1,6 @@
 <?php
- require 'database/db_connect.php';
+global $conn;
+require 'database/db_connect.php';
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
