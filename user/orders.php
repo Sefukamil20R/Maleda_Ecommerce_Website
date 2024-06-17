@@ -11,39 +11,40 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="../CSS/
 login.css">
+    <link rel="stylesheet" href="../CSS/
+profile.css">
     <link rel="stylesheet" href="../CSS/header-style.css">
 </head>
 
 
 <body>
+
     <?php include '../includes/header.php'; ?>
     <div class="container">
         <h1>User Dashboard</h1>
+        <!-- Navigation Menu -->
         <nav class="menu">
             <ul>
-                <li><a href="orders.php">Orders</a></li>
-                <li><a href="wishlist.php">Wishlist</a></li>
                 <li><a href="profile.php">profile</a></li>
+                <li><a href="wishlist.php">Wishlist</a></li>
+                <li><a href="addressbook.php">Address Book</a></li>
                 <li><a href="settings.php">Account Settings</a></li>
                 <li><a href="../logout.php">Logout</a></li>
             </ul>
         </nav>
-
-        <!-- Address Book -->
-        <section id="address" class="address-book">
-            <!-- Display user's shipping addresses -->
-            <h2 class="section-title">Address Book</h2>
+        <section id="orders" class="order-history">
+            <!-- Display user's order history -->
+            <h2 class="section-title">Order History</h2>
             <!-- Placeholder content -->
-            <ul class="address-list">
+            <ul class="order-list">
                 <li>
-                    <span>Address 1:</span> 123 Main St, City, Country, Postal Code
-                    <!--button class="btn">Edit</!--button>
-                    <button class="btn">Delete</button>
+                    <strong>Order ID:</strong> 12345<br>
+                    <strong>Date:</strong> 2022-05-01<br>
+                    <strong>Status:</strong> Shipped<br>
+                    <strong>Total Amount:</strong> $100.00
                 </li>
-                <!-- Additional address entries -->
+                <!-- Additional order entries -->
             </ul>
-            <!-- Add new address button -->
-            <!--button class="btn add-address">Add New Address</!--button-->
         </section>
     </div>
     <?php include '../includes/footer.php'; ?>
