@@ -4,7 +4,7 @@
     <nav>
         <ul>
             <li>
-                <a href="../home.php" class="">Home</a>
+                <a href="./home.php">Home</a>
             </li>
             <li>
                 <a href="../Portfolio.php">Portfolio</a>
