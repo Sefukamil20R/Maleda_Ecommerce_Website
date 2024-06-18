@@ -1,54 +1,89 @@
-<?php
-global $conn;
-require 'database/db_connect.php';
-session_start();
-
-if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php?redirect_to=cart.php');
-    exit();
-}
-
-$cart_items = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart</title>
-    <link rel="stylesheet" href="CSS/display.css">
+    <title>Cart Page</title>
+    <link rel="stylesheet" href="CSS/cart.css">
 </head>
 <body>
-    <h2>Your Cart</h2>
-    <div class="cart-items">
-        <?php if (empty($cart_items)) { ?>
-            <p>Your cart is empty.</p>
-        <?php } else {
-            // Assuming $conn is your database connection
-           
-                        if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
+    <div id="cartItems"></div>
+    <div id="totalPrice"></div>
+    <div id="deliveryFee"></div>
+    <button onclick="checkout()">Checkout</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var total = 0;
+            var delivery = 0;
+            var cart = JSON.parse(localStorage.getItem("cart")) || {};
+            var cartItemsContainer = document.getElementById("cartItems");
+            var totalPriceElement = document.getElementById("totalPrice");
+            var deliveryFeeElement = document.getElementById("deliveryFee");
+
+            if (Object.keys(cart).length === 0) {
+                cartItemsContainer.innerHTML = "<p>Your cart is empty. Choose any products you want from the products page.</p>";
+            } else {
+                for (var productId in cart) {
+                    if (cart.hasOwnProperty(productId)) {
+                        var item = cart[productId];
+                        var itemElement = document.createElement("div");
+                        itemElement.classList.add("cart-item");
+                        itemElement.innerHTML = `
+                            <img src="${item.productImage}" alt="${item.productName}" width="100" height="100">
+                            <div class="item-details">
+                                <p>${item.productName}</p>
+                                <p>Price: $${item.productPrice}</p>
+                                <p>Quantity: ${item.quantity}</p>
+                            </div>
+                        `;
+                        cartItemsContainer.appendChild(itemElement);
+
+                        total += item.productPrice * item.quantity;
+                    }
+                }
+                delivery = total * 0.05;
+                totalPriceElement.innerText = "Total price: $" + total.toFixed(2);
+            }
+        });
+
+        async function checkout() {
+            var cart = JSON.parse(localStorage.getItem("cart")) || {};
+            var lineItems = [];
+
+            for (var productId in cart) {
+                if (cart.hasOwnProperty(productId)) {
+                    var item = cart[productId];
+                    lineItems.push({
+                        price: item.productPrice,
+                        name: item.productName,
+                        quantity: item.quantity
+                    });
+                }
             }
 
-            $placeholders = implode(',', array_fill(0, count($cart_items), '?'));
-            $stmt = $conn->prepare("SELECT id, title, price, image FROM products WHERE id IN ($placeholders)");
-            $stmt->bind_param(str_repeat('i', count($cart_items)), ...$cart_items);
-            $stmt->execute();
-            $result = $stmt->get_result();
+            try {
+                const response = await fetch('stripe/checkout.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ lineItems })
+                });
 
-            while ($row = $result->fetch_assoc()) {
-                echo "<div class='cart-item'>
-                        <img src='".$row['image']."' alt='".$row['title']."'>
-                        <h2>".$row['title']."</h2>
-                        <p>$".$row['price']."</p>
-                      </div>";
+                const result = await response.json();
+
+                if (response.ok) {
+                    window.location.href = result.url;
+                } else {
+                    alert(result.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred during checkout. Please try again.');
             }
-
-            $stmt->close();
-            $conn->close();
-        } ?>
-    </div>
+        }
+    </script>
 </body>
 </html>
