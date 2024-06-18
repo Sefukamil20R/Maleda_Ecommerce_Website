@@ -1,4 +1,5 @@
 <?php
+global $conn;
 session_start();
 
 // Check if the user is logged in, if not redirect to login page
@@ -12,7 +13,7 @@ require '../database/db_connect.php';
 
 // Retrieve orders for the logged-in user
 $user_id = $_SESSION['id']; // Assuming 'id' is the user ID field in your database
-$query = "SELECT * FROM orders WHERE user_id = ?";
+$query = "SELECT * FROM Orders WHERE user_id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();

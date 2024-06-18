@@ -1,4 +1,5 @@
 <?php
+global $conn;
 session_start();
 
 // Check if the user is logged in
@@ -15,7 +16,7 @@ include '../database/db_connect.php';
 $id = $_SESSION['id'];
 
 // Fetch user data from the database
-$query = "SELECT email, phone, address, profile_picture FROM users WHERE id = ?";
+$query = "SELECT email, phone, address FROM Users WHERE id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $id);
 $stmt->execute();
@@ -63,7 +64,6 @@ $conn->close();
             <!-- Display user's profile information -->
             <h2 class="section-title">Profile Information</h2>
             <div class="profile-info">
-                <img src="<?php echo htmlspecialchars($user['profile_picture']); ?>" alt="Profile Picture" class="profile-picture">
                 <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
                 <p><strong>Phone:</strong> <?php echo htmlspecialchars($user['phone']); ?></p>
                 <p><strong>Address:</strong> <?php echo htmlspecialchars($user['address']); ?></p>

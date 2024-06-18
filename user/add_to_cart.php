@@ -1,7 +1,7 @@
 
-
-    <?php
-    session_start();
+<?php
+global$conn;
+session_start();
     include '../database/db_connect.php';
 
     // Check if the user is logged in, if not redirect to login page
@@ -15,7 +15,7 @@
         $product_id = $_GET['id'];
 
         // Fetch product details from the database
-        $query = "SELECT id, title, price FROM products WHERE id = ?";
+        $query = "SELECT id, title, price FROM Products WHERE id = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $product_id);
         $stmt->execute();
