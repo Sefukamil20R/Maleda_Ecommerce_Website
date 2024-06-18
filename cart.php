@@ -1,4 +1,11 @@
+<?php
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    // If not, redirect them to the login page
+    header('Location: ../login.php');
+    exit;
+}
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
