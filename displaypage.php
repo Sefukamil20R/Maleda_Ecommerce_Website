@@ -18,7 +18,9 @@ session_start();
     <link rel="stylesheet" href="CSS/header-style.css" />
 </head>
 <body>
-    <div id="product-list"></div>
+    <div id="product-list">
+        <a href="cart.php">View cart page</a>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
