@@ -1,0 +1,17 @@
+{
+    "name": "sefina/stripe",
+    "autoload": {
+        "psr-4": {
+            "Sefina\\Stripe\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sefukamil20R",
+            "email": "Tenzilk20@gmail.com"
+        }
+    ],
+    "require": {
+        "stripe/stripe-php": "^14.10"
+    }
+}
