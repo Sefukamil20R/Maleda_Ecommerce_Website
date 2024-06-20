@@ -21,7 +21,7 @@ $products = array();
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         // Convert absolute file path to relative URL
-        $row['image'] = '/images/products/' . basename($row['image']);
+        $row['image'] = '/Yallaharif/Maleda_Ecommerce_Website/images/products/' . basename($row['image']);
         $row['image'] = str_replace('\\', '/', $row['image']); // Replace backslashes with forward slashes
         $products[] = $row;
     }

@@ -18,9 +18,8 @@ session_start();
     <link rel="stylesheet" href="CSS/header-style.css" />
 </head>
 <body>
-    <div id="product-list">
-        <a href="cart.php">View cart page</a>
-    </div>
+    <div id="product-list"></div>
+    <button id="view-cart-button" onclick="viewCart()">View Your Cart</button>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -47,7 +46,6 @@ session_start();
                             <img src="${product.image}" alt="${product.title}">
                             <div class="description">
                                 <h3>${product.title}</h3>
-                               
                                 <span class="price">$${product.price}</span>
                             </div>
                             <button onclick="promptForQuantity(${product.id})">Add To Cart</button>
@@ -94,14 +92,121 @@ session_start();
         }
 
         function updateCartCount() {
-            fetch('database/cart-count.php')
-                .then(response => response.json())
-                .then(data => {
-                    document.querySelector('.totalQuantity').innerText = data.cart_count;
-                })
-                .catch(error => console.error('Error fetching cart count:', error));
+            var cart = JSON.parse(localStorage.getItem('cart')) || {};
+            var totalQuantity = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
+            document.querySelector('.totalQuantity').innerText = totalQuantity;
+        }
+
+        function viewCart() {
+            window.location.href = 'cart.php';
         }
     </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #product-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        #product-list .item {
+            flex: 1 1 calc(25% - 20px); 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        #product-list .item:hover {
+            transform: translateY(-10px);
+        }
+
+        #product-list .item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        #product-list .item .description {
+            text-align: center;
+        }
+
+        #product-list .item .description h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        #product-list .item .description .price {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1em;
+            color: #777;
+        }
+
+        #product-list .item button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #product-list .item button:hover {
+            background-color: #0056b3;
+        }
+
+        #view-cart-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+        }
+
+        #view-cart-button:hover {
+            background-color: #218838;
+        }
+
+        @media (max-width: 1200px) {
+            #product-list .item {
+                flex: 1 1 calc(33.333% - 20px); 
+            }
+        }
+
+        @media (max-width: 900px) {
+            #product-list .item {
+                flex: 1 1 calc(50% - 20px); 
+            }
+        }
+
+        @media (max-width: 600px) {
+            #product-list .item {
+                flex: 1 1 100%; 
+            }
+        }
+    </style>
     <?php require 'includes/footer.php'; ?>
 </body>
 </html>

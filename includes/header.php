@@ -4,19 +4,19 @@
     <nav>
         <ul>
             <li>
-                <a href="../home.php" class="">Home</a>
+                <a href="http://localhost/YALLAHARIF/Maleda_Ecommerce_Website/home.php" class="">Home</a>
             </li>
             <li>
-                <a href="../Portfolio.php">Portfolio</a>
+                <a href="http://localhost/YALLAHARIF/Maleda_Ecommerce_Website/Portfolio.php">Portfolio</a>
             </li>
             <li>
-                <a href="../displaypage.php">Products</a>
+                <a href="http://localhost/YALLAHARIF/Maleda_Ecommerce_Website/displaypage.php">Products</a>
             </li>
             <li>
-                <a href="../login.php">Login</a>
+                <a href="http://localhost/YALLAHARIF/Maleda_Ecommerce_Website/login.php">Login</a>
             </li>
             <li>
-                <a href="../signup.php">Signup</a>
+                <a href="http://localhost/YALLAHARIF/Maleda_Ecommerce_Website/signup.php">Signup</a>
             </li>
         </ul>
     </nav>

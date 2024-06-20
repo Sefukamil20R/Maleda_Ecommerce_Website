@@ -12,12 +12,22 @@ if (!isset($_SESSION['id'])) {
 // Include the database connection file
 include '../database/db_connect.php';
 
+// Check if the database connection is established
+if (!$conn) {
+    die("Database connection failed: " . mysqli_connect_error());
+}
+
 // Get the user ID from the session
 $id = $_SESSION['id'];
 
 // Fetch user data from the database
 $query = "SELECT email, phone, address FROM Users WHERE id = ?";
 $stmt = $conn->prepare($query);
+
+if ($stmt === false) {
+    die("Prepare failed: " . $conn->error);
+}
+
 $stmt->bind_param("i", $id);
 $stmt->execute();
 $result = $stmt->get_result();
